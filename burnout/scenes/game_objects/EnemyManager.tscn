@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://daeo3w175yfpv"]
+[gd_scene load_steps=5 format=3 uid="uid://daeo3w175yfpv"]
 
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="1_jnajs"]
 [ext_resource type="PackedScene" uid="uid://7yysxnjkqrgl" path="res://scenes/game_objects/characters/Enemy.tscn" id="2_4cv2n"]
 [ext_resource type="PackedScene" uid="uid://btclmhvd2fo8k" path="res://scenes/game_objects/characters/JumpingEnemy.tscn" id="3_vui6p"]
+[ext_resource type="PackedScene" uid="uid://bxo4v6la8agb7" path="res://scenes/game_objects/characters/FlyingEnemy.tscn" id="4_sjad8"]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_jnajs")
 enemy_scene = ExtResource("2_4cv2n")
 jumping_enemy_scene = ExtResource("3_vui6p")
+flying_enemy_scene = ExtResource("4_sjad8")
 
 [node name="Enemies" type="Node" parent="."]

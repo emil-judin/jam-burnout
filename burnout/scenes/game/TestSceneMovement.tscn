@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxjavkjyqwoeh"]
+[gd_scene load_steps=13 format=3 uid="uid://bxjavkjyqwoeh"]
 
 [ext_resource type="Texture2D" uid="uid://hea3lvthrn4k" path="res://assets/sprites/environments/test_environment.png" id="2_ldbc0"]
 [ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="2_mknsx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://daeo3w175yfpv" path="res://scenes/game_objects/EnemyManager.tscn" id="3_qnb4v"]
 [ext_resource type="PackedScene" uid="uid://ckwmnih6s1lfr" path="res://scenes/game_objects/ItemManager.tscn" id="4_3afqg"]
 [ext_resource type="PackedScene" uid="uid://cjyu8t8lqejpq" path="res://scenes/game_objects/environments/Stones.tscn" id="6_mbcy3"]
+[ext_resource type="PackedScene" uid="uid://c2jn1c454ggsi" path="res://scenes/ui/ui.tscn" id="7_gihjj"]
 
 [sub_resource type="Gradient" id="Gradient_q6032"]
 offsets = PackedFloat32Array(0.0701754, 0.692982)
@@ -117,3 +118,7 @@ position = Vector2(684, 255)
 [node name="Stones2" parent="." instance=ExtResource("6_mbcy3")]
 position = Vector2(2115, 950)
 scale = Vector2(-1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("7_gihjj")]

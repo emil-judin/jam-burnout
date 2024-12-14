@@ -4,6 +4,7 @@ extends Node
 @export var player: Player
 @export var enemy_scene: PackedScene
 @export var jumping_enemy_scene: PackedScene
+@export var flying_enemy_scene: PackedScene
 @export var spawn_frequency: float = 1
 @export var enemy_spawn_points: Array[Node2D]
 var spawn_timer: float = 0;
@@ -18,7 +19,7 @@ func spawn_enemy():
 	var random_index = randi_range(0, enemy_spawn_points.size() - 1)
 	var random_spawn_point = enemy_spawn_points[random_index] as Node2D
 	
-	var random_enemy_type = randi_range(0, 1)
+	var random_enemy_type = randi_range(0, 2)
 	if random_enemy_type == 0:
 		# spawn walking enemy	
 		var enemy_instance = enemy_scene.instantiate() as Enemy
@@ -35,3 +36,10 @@ func spawn_enemy():
 		jumping_enemy_instance.jump_start = random_spawn_point.global_position
 		jumping_enemy_instance.jump_target = player.global_position
 		jumping_enemy_instance.start_chase()
+	elif random_enemy_type == 2:
+		# spawn jumping enemy
+		var flying_enemy_instance = flying_enemy_scene.instantiate() as FlyingEnemy
+		enemies.add_child(flying_enemy_instance)
+		flying_enemy_instance.target = player
+		flying_enemy_instance.global_position = random_spawn_point.global_position
+		flying_enemy_instance.start_chase()

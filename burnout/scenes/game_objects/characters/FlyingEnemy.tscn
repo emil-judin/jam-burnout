@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://bxo4v6la8agb7"]
+
+[ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_y1bx2"]
+[ext_resource type="Texture2D" uid="uid://bw37hjhr0m6l5" path="res://assets/sprites/characters/walk_mousnake.png" id="2_he8tq"]
+[ext_resource type="PackedScene" uid="uid://dv2gcdbr10esg" path="res://scenes/game_objects/EnemyBullet.tscn" id="2_rl05j"]
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="3_d81is"]
+[ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="4_s0q11"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fpgn"]
+atlas = ExtResource("2_he8tq")
+region = Rect2(0, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33gtg"]
+atlas = ExtResource("2_he8tq")
+region = Rect2(281, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw55r"]
+atlas = ExtResource("2_he8tq")
+region = Rect2(0, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbfs8"]
+atlas = ExtResource("2_he8tq")
+region = Rect2(281, 418, 281, 418)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yim1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fpgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33gtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw55r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbfs8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1s4"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo2u5"]
+size = Vector2(128, 129)
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+z_index = -1
+script = ExtResource("1_y1bx2")
+enemy_bullet_scene = ExtResource("2_rl05j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_yim1k")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.784245
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.111962, 0.438077, 0.371136, 1)
+texture = ExtResource("3_d81is")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0j1s4")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_jo2u5")
+
+[node name="HealthManager" parent="." instance=ExtResource("4_s0q11")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="died" from="HealthManager" to="." method="die"]
