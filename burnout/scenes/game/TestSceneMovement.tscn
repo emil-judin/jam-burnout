@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://rvyttndywf37"]
+[gd_scene load_steps=5 format=3 uid="uid://c72gym58gf5k0"]
 
-[ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="1_lx6xn"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/characters/Player.tscn" id="1_lx6xn"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_10f8h"]
-[ext_resource type="PackedScene" uid="uid://7yysxnjkqrgl" path="res://scenes/game_objects/characters/Enemy.tscn" id="3_7v2ss"]
-[ext_resource type="PackedScene" uid="uid://daeo3w175yfpv" path="res://scenes/game_objects/EnemyManager.tscn" id="4_cvfru"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/characters/Enemy.tscn" id="3_7v2ss"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/EnemyManager.tscn" id="4_cvfru"]
 
 [node name="TestSceneMovement" type="Node2D"]
 
