@@ -33,6 +33,7 @@ func _process(delta):
 			msec_output = "0" + msec_output
 		
 		countdown_label.text = min_output + ":" +  sec_output + ":" + msec_output
+		print(countdown_label.text)
 		
 		if Input.is_action_just_pressed("+"):
 			add_time(10)
