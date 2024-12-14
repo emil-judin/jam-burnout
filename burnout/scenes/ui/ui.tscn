@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2jn1c454ggsi"]
+[gd_scene load_steps=4 format=3 uid="uid://76a05owd81yc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_qv1m4"]
+[ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/main_char_head.png" id="2_pbnqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7coe"]
+bg_color = Color(0.730081, 0.104488, 0.136015, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_qv1m4")
+wait_time = 60.0
+max_time = 280.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -13,7 +19,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="ProgressBarContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_top = 1080.0
+offset_right = 1080.0
+offset_bottom = 1140.0
+rotation = 4.71239
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ProgressBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 80
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/ProgressBarContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_n7coe")
+show_percentage = false
+
+[node name="MainContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,29 +48,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Top" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="TopBox" type="HBoxContainer" parent="Control/MainContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/Top"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control/VBoxContainer/Top/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer/Top"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MainContainer/TopBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 20
 
-[node name="Countdown" type="RichTextLabel" parent="Control/VBoxContainer/Top/MarginContainer2"]
+[node name="Countdown" type="RichTextLabel" parent="Control/MainContainer/TopBox/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "00:00:00"
 text_direction = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="BottomBox" type="HBoxContainer" parent="Control/MainContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 915.0
+offset_right = 251.0
+offset_bottom = 1333.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pbnqi")
