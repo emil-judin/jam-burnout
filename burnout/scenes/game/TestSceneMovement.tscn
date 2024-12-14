@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://rvyttndywf37"]
+
+[ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="1_lx6xn"]
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_10f8h"]
+[ext_resource type="PackedScene" uid="uid://7yysxnjkqrgl" path="res://scenes/game_objects/characters/Enemy.tscn" id="3_7v2ss"]
+[ext_resource type="PackedScene" uid="uid://daeo3w175yfpv" path="res://scenes/game_objects/EnemyManager.tscn" id="4_cvfru"]
+
+[node name="TestSceneMovement" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_lx6xn")]
+position = Vector2(983, 471)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Ground" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(983, 470)
+scale = Vector2(10, 5)
+texture = ExtResource("2_10f8h")
+
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("4_cvfru")]
+player = NodePath("../Player")
+enemy_scene = ExtResource("3_7v2ss")
+enemy_spawn_points = [NodePath("../EnemySpawnPoints/Spawn1")]
+
+[node name="EnemySpawnPoints" type="Node" parent="."]
+
+[node name="Spawn1" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(260, 207)
+
+[node name="Enemy" parent="." instance=ExtResource("3_7v2ss")]
+position = Vector2(674, 503)

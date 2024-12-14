@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c68hbmawh5mf1"]
+
+[ext_resource type="Script" path="res://scripts/fire_bullet.gd" id="1_5ctt1"]
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_05srw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo0ma"]
+size = Vector2(32, 32)
+
+[node name="FireBullet" type="Node2D"]
+script = ExtResource("1_5ctt1")
+bullet_speed = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0901961, 0.0823529, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_05srw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_oo0ma")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
