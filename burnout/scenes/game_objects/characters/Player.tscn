@@ -1,22 +1,77 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb2btogqfqo0m"]
+[gd_scene load_steps=13 format=3 uid="uid://cb2btogqfqo0m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v2l1p"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_vba7n"]
+[ext_resource type="Texture2D" uid="uid://vthfbccalicp" path="res://assets/sprites/idle_animation_player.png" id="2_yuob6"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="3_a15g0"]
 [ext_resource type="PackedScene" uid="uid://c68hbmawh5mf1" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f24d4"]
+atlas = ExtResource("2_yuob6")
+region = Rect2(0, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67nsx"]
+atlas = ExtResource("2_yuob6")
+region = Rect2(281, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxfv4"]
+atlas = ExtResource("2_yuob6")
+region = Rect2(0, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usn4c"]
+atlas = ExtResource("2_yuob6")
+region = Rect2(281, 418, 281, 418)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_byg12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f24d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67nsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxfv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usn4c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_be3nf"]
-size = Vector2(128, 128)
+size = Vector2(83, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c16nj"]
+size = Vector2(129, 182)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v2l1p")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_byg12")
+animation = &"idle"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_vba7n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, 69.5)
 shape = SubResource("RectangleShape2D_be3nf")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6.5, 72)
+shape = SubResource("RectangleShape2D_c16nj")
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("3_a15g0")
 bullet_scene = ExtResource("4_r6acd")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://lou47xvr4l6u"]
+
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="1_ettuf"]
+[ext_resource type="Script" path="res://scripts/time_item.gd" id="1_r0m8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw5as"]
+size = Vector2(64, 64)
+
+[node name="TimeItem" type="Node2D"]
+script = ExtResource("1_r0m8i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ettuf")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pw5as")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
