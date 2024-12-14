@@ -6,10 +6,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7coe"]
 bg_color = Color(0.730081, 0.104488, 0.136015, 1)
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("countdown_label", "progress_bar")]
 script = ExtResource("1_qv1m4")
-wait_time = 60.0
-max_time = 280.0
+countdown_label = NodePath("Control/MainContainer/TopBox/MarginContainer2/Countdown")
+progress_bar = NodePath("Control/ProgressBarContainer/MarginContainer/ProgressBar")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
