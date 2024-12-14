@@ -3,6 +3,7 @@ class_name Enemy
 
 @onready var health_manager: HealthManager = $HealthManager
 @export var movemenent_speed: float = 10
+@export var contact_damage: float = 1
 var target: Node2D
 var is_chasing = false
 

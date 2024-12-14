@@ -21,5 +21,5 @@ func _physics_process(delta):
 	global_position += direction.normalized() * bullet_speed
 
 func _on_area_entered(area: Area2D):
-	if area.get_parent() is not Player:
+	if area.get_parent() is not Player && area.get_parent() is not TimeItem:
 		queue_free()

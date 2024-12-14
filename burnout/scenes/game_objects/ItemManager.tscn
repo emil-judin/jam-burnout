@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckwmnih6s1lfr"]
+
+[ext_resource type="Script" path="res://scripts/item_manager.gd" id="1_evx1v"]
+[ext_resource type="PackedScene" uid="uid://lou47xvr4l6u" path="res://scenes/game_objects/TimeItem.tscn" id="2_voaml"]
+
+[node name="ItemManager" type="Node"]
+script = ExtResource("1_evx1v")
+item_scene = ExtResource("2_voaml")
+
+[node name="Items" type="Node" parent="."]
