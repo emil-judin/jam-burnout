@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://7yysxnjkqrgl"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mkx8c"]
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="1_v6eyg"]
+[ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="3_ndkax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1s4"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo2u5"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = -1
+script = ExtResource("1_mkx8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.111962, 0.438077, 0.371136, 1)
+texture = ExtResource("1_v6eyg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0j1s4")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jo2u5")
+
+[node name="HealthManager" parent="." instance=ExtResource("3_ndkax")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="died" from="HealthManager" to="." method="die"]
