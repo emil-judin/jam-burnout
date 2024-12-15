@@ -9,7 +9,7 @@ const FILE_NAME: String = "burnout_highscores.tres"
 var highscore_list: ScoreList = ScoreList.new() # neue ScoreList wird Erzeugt
 
 
-@onready var highscore_display: Label = $HighscoreDisplay
+@export var highscore_display: Label
 
 
 func _ready():
@@ -26,7 +26,7 @@ func load_highscores():
 
 # Updatet die Darstellung der Highscoreliste
 func update_highscore_display():
-	print("test1")
+	
 	# Stellt sicher das das display leer ist.
 	highscore_display.text = ""
 	

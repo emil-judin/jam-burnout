@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_vba7n"]
 [ext_resource type="Texture2D" uid="uid://vthfbccalicp" path="res://assets/sprites/characters/idle_animation_player.png" id="2_yuob6"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="3_a15g0"]
-[ext_resource type="PackedScene" uid="uid://c68hbmawh5mf1" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
 [ext_resource type="Texture2D" uid="uid://b3c1fygmwbqrh" path="res://assets/sprites/characters/side_walk_player.png" id="5_umysj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbrwi"]

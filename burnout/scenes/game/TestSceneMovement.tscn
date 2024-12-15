@@ -83,7 +83,7 @@ texture = ExtResource("2_ldbc0")
 
 [node name="Ground2" type="Sprite2D" parent="."]
 z_index = -100
-position = Vector2(2893, 537)
+position = Vector2(2873, 560)
 texture = ExtResource("3_jwyg5")
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("3_qnb4v")]

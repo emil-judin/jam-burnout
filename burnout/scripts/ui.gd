@@ -4,7 +4,7 @@ extends CanvasLayer
 static var game_start_time = Time.get_ticks_msec()
 
 @export var countdown_label: RichTextLabel
-@export var progress_bar: ProgressBar
+@export var progress_bar: TextureProgressBar
 
 func initialize_health_ui(start_health_time: float, max_health_time: float):
 	progress_bar.max_value = max_health_time
