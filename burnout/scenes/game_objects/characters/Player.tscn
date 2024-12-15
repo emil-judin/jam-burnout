@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://djgwatt5c15ni" path="res://assets/sprites/characters/player_sad.png" id="4_6a0tg"]
 [ext_resource type="Texture2D" uid="uid://ch1bdx0m8gmvh" path="res://assets/sprites/characters/idle_player_02.png" id="4_dq5hc"]
 [ext_resource type="PackedScene" uid="uid://c68hbmawh5mf1" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
 [ext_resource type="Texture2D" uid="uid://b3c1fygmwbqrh" path="res://assets/sprites/characters/side_walk_player.png" id="5_umysj"]
 [ext_resource type="Texture2D" uid="uid://cby5af721y2o8" path="res://assets/sprites/characters/stomp_complete.png" id="9_k568q"]
 

@@ -7,6 +7,7 @@ static var game_start_time = Time.get_ticks_msec()
 @export var progress_bar: ProgressBar
 #@export var flame_texture: Sprite2D
 @export var flame_texture: TextureRect
+@export var progress_bar: TextureProgressBar
 
 func initialize_health_ui(start_health_time: float, max_health_time: float):
 	progress_bar.max_value = max_health_time
