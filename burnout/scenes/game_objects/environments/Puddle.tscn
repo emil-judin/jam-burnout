@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bje0fn5b6kdw6"]
+
+[ext_resource type="Texture2D" uid="uid://ncr4l8o5m2vl" path="res://assets/sprites/environments/puddle.png" id="1_dqdxx"]
+[ext_resource type="Script" path="res://scripts/puddle.gd" id="1_ua0oh"]
+
+[node name="Puddle" type="Node2D"]
+script = ExtResource("1_ua0oh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 25
+texture = ExtResource("1_dqdxx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-284, -228, -332, -205, -307, -133, -342, -72, -453, -14, -490, 38, -381, 68, -222, 119, -127, 196, 8, 149, 97, 179, 416, 106, 398, 52, 207, -10, 241, -105, 194, -169, 28, -236, -154, -224)

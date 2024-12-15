@@ -42,7 +42,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1s4"]
-size = Vector2(128, 128)
+size = Vector2(82, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo2u5"]
 size = Vector2(128, 265)
@@ -52,6 +52,7 @@ z_index = -1
 script = ExtResource("1_mkx8c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 50
 sprite_frames = SubResource("SpriteFrames_yim1k")
 animation = &"walk"
 autoplay = "walk"
@@ -63,8 +64,8 @@ modulate = Color(0.111962, 0.438077, 0.371136, 1)
 texture = ExtResource("1_v6eyg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12)
 shape = SubResource("RectangleShape2D_0j1s4")
-disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bop1llks4ne77"]
+
+[ext_resource type="Texture2D" uid="uid://drw6a63yiueec" path="res://assets/sprites/environments/grave2.png" id="1_w502x"]
+
+[sub_resource type="Gradient" id="Gradient_q6032"]
+offsets = PackedFloat32Array(0.0701754, 0.0833333, 0.390351)
+colors = PackedColorArray(1, 1, 1, 1, 0.876712, 0.876712, 0.876712, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d0i5v"]
+gradient = SubResource("Gradient_q6032")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Grave" type="Node2D"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w502x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(4, 114)
+polygon = PackedVector2Array(-56, -290, -89, -271, -114, -241, -164, -106, -175, -50, -174, -10, -128, 17, 28, -8, 148, -21, 141, -113, 125, -195, 84, -253, 49, -280, -35, -296)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(33, 177)
+color = Color(1, 0.603922, 0.0901961, 1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_d0i5v")
+texture_scale = 18.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(317, 78)
+color = Color(1, 0.603922, 0.0901961, 1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_d0i5v")
+texture_scale = 18.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-229, 97)
+color = Color(1, 0.603922, 0.0901961, 1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_d0i5v")
+texture_scale = 18.0

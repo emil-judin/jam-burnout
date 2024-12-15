@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwukncgwsjfgq"]
+
+[ext_resource type="Texture2D" uid="uid://dlki7k0hxmj5a" path="res://assets/sprites/environments/stones2.png" id="1_halwk"]
+
+[node name="Stones3" type="Node2D"]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_halwk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-60, -111, -85, -22, -127, 13, -171, 41, -176, 80, -91, 92, 68, 91, 135, 76, 165, 48, 157, 11, 137, -39, 109, -114, 24, -126)

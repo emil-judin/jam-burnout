@@ -1,15 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://76a05owd81yc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_qv1m4"]
-[ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/main_char_head.png" id="2_pbnqi"]
+[ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/characters/main_char_head.png" id="2_pbnqi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7coe"]
 bg_color = Color(0.730081, 0.104488, 0.136015, 1)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("countdown_label", "progress_bar")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("countdown_label", "progress_bar", "flame_texture")]
 script = ExtResource("1_qv1m4")
 countdown_label = NodePath("Control/MainContainer/TopBox/MarginContainer2/Countdown")
 progress_bar = NodePath("Control/ProgressBarContainer/MarginContainer/ProgressBar")
+flame_texture = NodePath("Control/TextureRect")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18,26 +19,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [node name="ProgressBarContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-offset_top = 1080.0
-offset_right = 1080.0
-offset_bottom = 1140.0
-rotation = 4.71239
+layout_mode = 1
+offset_right = 260.0
+offset_bottom = 1080.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/ProgressBarContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/ProgressBarContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_n7coe")
+fill_mode = 3
 show_percentage = false
 
 [node name="MainContainer" type="VBoxContainer" parent="Control"]
@@ -70,9 +74,15 @@ size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -30.0
-offset_top = 915.0
-offset_right = 251.0
-offset_bottom = 1333.0
+offset_left = 99.0
+offset_top = 885.0
+offset_right = 225.0
+offset_bottom = 1115.0
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pbnqi")
+stretch_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(127, 964)
 texture = ExtResource("2_pbnqi")

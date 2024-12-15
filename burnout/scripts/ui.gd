@@ -5,6 +5,8 @@ static var game_start_time = Time.get_ticks_msec()
 
 @export var countdown_label: RichTextLabel
 @export var progress_bar: ProgressBar
+#@export var flame_texture: Sprite2D
+@export var flame_texture: TextureRect
 
 func initialize_health_ui(start_health_time: float, max_health_time: float):
 	progress_bar.max_value = max_health_time
@@ -35,6 +37,7 @@ func update_countdown(time_left: float) -> void:
 
 func update_progress_bar(time_left: float) -> void:
 	progress_bar.value = time_left
+	#flame_texture.global_position.y = progress_bar.global_position.y + progress_bar.size.y*1.5 - (progress_bar.value / progress_bar.max_value) * progress_bar.size.y
 
 static func run_time_output() -> String:
 	var run_time = Time.get_ticks_msec() - game_start_time

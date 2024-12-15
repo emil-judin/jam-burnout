@@ -1,97 +1,97 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxjavkjyqwoeh"]
+[gd_scene load_steps=22 format=3 uid="uid://bxjavkjyqwoeh"]
 
-[ext_resource type="Texture2D" uid="uid://hea3lvthrn4k" path="res://assets/sprites/environments/test_environment.png" id="2_ldbc0"]
 [ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="2_mknsx"]
-[ext_resource type="Texture2D" uid="uid://jkbvy7c56nx5" path="res://assets/sprites/environments/test_environment2.png" id="3_jwyg5"]
+[ext_resource type="PackedScene" uid="uid://lou47xvr4l6u" path="res://scenes/game_objects/TimeItem.tscn" id="2_ptd5y"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_qjdxk"]
+[ext_resource type="Texture2D" uid="uid://kql6a0doekfj" path="res://assets/sprites/environments/map.jpg" id="2_yfjpm"]
 [ext_resource type="PackedScene" uid="uid://daeo3w175yfpv" path="res://scenes/game_objects/EnemyManager.tscn" id="3_qnb4v"]
 [ext_resource type="PackedScene" uid="uid://ckwmnih6s1lfr" path="res://scenes/game_objects/ItemManager.tscn" id="4_3afqg"]
-[ext_resource type="PackedScene" uid="uid://cjyu8t8lqejpq" path="res://scenes/game_objects/environments/Stones.tscn" id="6_mbcy3"]
+[ext_resource type="PackedScene" uid="uid://cjyu8t8lqejpq" path="res://scenes/game_objects/environments/Stones1.tscn" id="6_mbcy3"]
 [ext_resource type="PackedScene" uid="uid://76a05owd81yc" path="res://scenes/ui/ui.tscn" id="7_gihjj"]
+[ext_resource type="PackedScene" uid="uid://bje0fn5b6kdw6" path="res://scenes/game_objects/environments/Puddle.tscn" id="8_6kbny"]
+[ext_resource type="PackedScene" uid="uid://dxi1ws103j6y3" path="res://scenes/game_objects/environments/Tree2.tscn" id="9_mqh85"]
+[ext_resource type="Texture2D" uid="uid://drw6a63yiueec" path="res://assets/sprites/environments/grave2.png" id="10_0gqtx"]
+[ext_resource type="PackedScene" uid="uid://xawl1rrk6co5" path="res://scenes/game_objects/environments/Tree1.tscn" id="10_37vf8"]
+[ext_resource type="PackedScene" uid="uid://cl3e80efc18rv" path="res://scenes/game_objects/environments/Stones4.tscn" id="11_scxqu"]
+[ext_resource type="PackedScene" uid="uid://cxfg1r2pcyuli" path="res://scenes/game_objects/environments/Stones2.tscn" id="12_7wl3f"]
+[ext_resource type="PackedScene" uid="uid://dwukncgwsjfgq" path="res://scenes/game_objects/environments/Stones3.tscn" id="13_e5cnu"]
+[ext_resource type="PackedScene" uid="uid://dyqei3p3xss5s" path="res://scenes/game_objects/environments/Tree3.tscn" id="16_jsn0c"]
+[ext_resource type="PackedScene" uid="uid://dmatjaaetgm38" path="res://scenes/game_objects/environments/Tree4.tscn" id="17_0tj7y"]
 
-[sub_resource type="Gradient" id="Gradient_q6032"]
-offsets = PackedFloat32Array(0.0701754, 0.692982)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_lb0px"]
+resource_name = "death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 5)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3cerf"]
-gradient = SubResource("Gradient_q6032")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Animation" id="Animation_ga18q"]
+[sub_resource type="Animation" id="Animation_u16c5"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/path = NodePath(".:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_av7au"]
-resource_name = "idle_flame"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [3.8, 3.0, 3.8]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgfkh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4akef"]
 _data = {
-"RESET": SubResource("Animation_ga18q"),
-"idle_flame": SubResource("Animation_av7au")
+"RESET": SubResource("Animation_u16c5"),
+"death_animation": SubResource("Animation_lb0px")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh35t"]
+size = Vector2(7861, 172)
 
 [node name="TestSceneMovement" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("ui") instance=ExtResource("2_mknsx")]
-position = Vector2(992, 506)
+[node name="Player" parent="." node_paths=PackedStringArray("ui", "camera") instance=ExtResource("2_mknsx")]
+position = Vector2(5, -60)
 ui = NodePath("../UI")
 movement_speed = 600.0
+camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-visible = false
+position = Vector2(-5, 60)
+limit_left = -3840
+limit_top = -2160
+limit_right = 3840
+limit_bottom = 2160
+script = ExtResource("2_qjdxk")
 
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-color = Color(1, 0.603922, 0.0901961, 1)
-texture = SubResource("GradientTexture2D_3cerf")
-texture_scale = 18.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Camera2D"]
 libraries = {
-"": SubResource("AnimationLibrary_cgfkh")
+"": SubResource("AnimationLibrary_4akef")
 }
-autoplay = "idle_flame"
 
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -100
-position = Vector2(-949, 531)
-texture = ExtResource("2_ldbc0")
+texture = ExtResource("2_yfjpm")
 
-[node name="Ground2" type="Sprite2D" parent="."]
-z_index = -100
-position = Vector2(2893, 537)
-texture = ExtResource("3_jwyg5")
+[node name="TimeItem" parent="." instance=ExtResource("2_ptd5y")]
+position = Vector2(1488, 100)
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("3_qnb4v")]
 player = NodePath("../Player")
-enemy_spawn_points = [NodePath("../EnemySpawnPoints/EnemySpawn1"), NodePath("../EnemySpawnPoints/EnemySpawn2")]
+enemy_spawn_points = [NodePath("../EnemySpawnPoints/EnemySpawn1"), NodePath("../EnemySpawnPoints/EnemySpawn2"), NodePath("../EnemySpawnPoints/EnemySpawn3"), NodePath("../EnemySpawnPoints/EnemySpawn4"), NodePath("../EnemySpawnPoints/EnemySpawn5"), NodePath("../EnemySpawnPoints/EnemySpawn6"), NodePath("../EnemySpawnPoints/EnemySpawn7"), NodePath("../EnemySpawnPoints/EnemySpawn8"), NodePath("../EnemySpawnPoints/EnemySpawn9"), NodePath("../EnemySpawnPoints/EnemySpawn10")]
 
 [node name="ItemManager" parent="." node_paths=PackedStringArray("item_spawn_points") instance=ExtResource("4_3afqg")]
-item_spawn_points = [NodePath("../ItemSpawnPoints/ItemSpawn1"), NodePath("../ItemSpawnPoints/ItemSpawn2")]
+spawn_frequency = 2.0
+item_spawn_points = [NodePath("../ItemSpawnPoints/ItemSpawn1"), NodePath("../ItemSpawnPoints/ItemSpawn2"), NodePath("../ItemSpawnPoints/ItemSpawn3"), NodePath("../ItemSpawnPoints/ItemSpawn4"), NodePath("../ItemSpawnPoints/ItemSpawn5"), NodePath("../ItemSpawnPoints/ItemSpawn6"), NodePath("../ItemSpawnPoints/ItemSpawn7"), NodePath("../ItemSpawnPoints/ItemSpawn8"), NodePath("../ItemSpawnPoints/ItemSpawn9"), NodePath("../ItemSpawnPoints/ItemSpawn10"), NodePath("../ItemSpawnPoints/ItemSpawn11"), NodePath("../ItemSpawnPoints/ItemSpawn11")]
 
 [node name="ItemSpawnPoints" type="Node" parent="."]
 
@@ -101,6 +101,33 @@ position = Vector2(214, 116)
 [node name="ItemSpawn2" type="Node2D" parent="ItemSpawnPoints"]
 position = Vector2(1594, 130)
 
+[node name="ItemSpawn3" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(1710, -802)
+
+[node name="ItemSpawn4" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(2834, 74)
+
+[node name="ItemSpawn5" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(1846, 1870)
+
+[node name="ItemSpawn6" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(-538, 1554)
+
+[node name="ItemSpawn7" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(-2742, 1098)
+
+[node name="ItemSpawn8" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(-2234, 30)
+
+[node name="ItemSpawn9" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(-3118, -798)
+
+[node name="ItemSpawn10" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(-2226, -1550)
+
+[node name="ItemSpawn11" type="Node2D" parent="ItemSpawnPoints"]
+position = Vector2(262, -1814)
+
 [node name="EnemySpawnPoints" type="Node" parent="."]
 
 [node name="EnemySpawn1" type="Node2D" parent="EnemySpawnPoints"]
@@ -109,15 +136,155 @@ position = Vector2(214, 940)
 [node name="EnemySpawn2" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(1666, 970)
 
+[node name="EnemySpawn3" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(506, 1658)
+
+[node name="EnemySpawn4" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-1502, 1534)
+
+[node name="EnemySpawn5" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-2882, 758)
+
+[node name="EnemySpawn6" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-2494, -850)
+
+[node name="EnemySpawn7" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-1258, -1762)
+
+[node name="EnemySpawn8" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(554, -1762)
+
+[node name="EnemySpawn9" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(2382, -1362)
+
+[node name="EnemySpawn10" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(2430, -410)
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0.715533, 0.299073, 6.73831e-07, 1)
 blend_mode = 1
 
-[node name="Stones" parent="." instance=ExtResource("6_mbcy3")]
-position = Vector2(684, 255)
-
-[node name="Stones2" parent="." instance=ExtResource("6_mbcy3")]
-position = Vector2(2115, 950)
-scale = Vector2(-1, 1)
-
 [node name="UI" parent="." instance=ExtResource("7_gihjj")]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Grave2" type="Sprite2D" parent="Environment"]
+position = Vector2(232, -469)
+texture = ExtResource("10_0gqtx")
+
+[node name="Tree1" parent="Environment" instance=ExtResource("10_37vf8")]
+position = Vector2(-513, 820)
+
+[node name="Tree2" parent="Environment" instance=ExtResource("9_mqh85")]
+position = Vector2(-3273, -1272)
+rotation = -3.14159
+scale = Vector2(1, -1)
+
+[node name="Tree3" parent="Environment" instance=ExtResource("9_mqh85")]
+position = Vector2(3151, -1553)
+
+[node name="Stones1" parent="Environment" instance=ExtResource("6_mbcy3")]
+position = Vector2(-1224, -274)
+
+[node name="Stones4" parent="Environment" instance=ExtResource("11_scxqu")]
+position = Vector2(-2980, -382)
+
+[node name="Stones2" parent="Environment" instance=ExtResource("12_7wl3f")]
+position = Vector2(-3451, 1566)
+scale = Vector2(1.335, 1.335)
+
+[node name="Stones3" parent="Environment" instance=ExtResource("13_e5cnu")]
+position = Vector2(-2223, 1898)
+rotation = -3.14159
+scale = Vector2(1.125, -1.125)
+
+[node name="Stones6" parent="Environment" instance=ExtResource("11_scxqu")]
+position = Vector2(1343, -1438)
+rotation = -3.14159
+scale = Vector2(1, -1)
+
+[node name="Stones7" parent="Environment" instance=ExtResource("13_e5cnu")]
+position = Vector2(3284, -695)
+scale = Vector2(1.185, 1.185)
+
+[node name="Stones8" parent="Environment" instance=ExtResource("12_7wl3f")]
+position = Vector2(3288, 446)
+scale = Vector2(1.245, 1.245)
+
+[node name="Stones9" parent="Environment" instance=ExtResource("6_mbcy3")]
+position = Vector2(3216, 1829)
+rotation = -3.14159
+scale = Vector2(1, -1)
+
+[node name="Puddle" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(-3283, 638)
+scale = Vector2(0.4, 0.4)
+
+[node name="Puddle2" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(-1451, 358)
+rotation = -3.14159
+scale = Vector2(0.4, -0.4)
+
+[node name="Puddle3" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(-1167, 1866)
+rotation = -3.14159
+scale = Vector2(0.4, -0.4)
+
+[node name="Puddle5" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(2896, 1493)
+rotation = -3.14159
+scale = Vector2(0.4, -0.4)
+
+[node name="Puddle4" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(-135, 530)
+scale = Vector2(0.4, 0.4)
+
+[node name="Puddle8" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(-2735, -1701)
+scale = Vector2(0.4, 0.4)
+
+[node name="Puddle6" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(2612, -1746)
+scale = Vector2(0.4, 0.4)
+
+[node name="Puddle7" parent="Environment" instance=ExtResource("8_6kbny")]
+position = Vector2(928, -1733)
+rotation = -3.14159
+scale = Vector2(0.4, -0.4)
+
+[node name="Tree4" parent="Environment" instance=ExtResource("16_jsn0c")]
+position = Vector2(-600, -1590)
+scale = Vector2(0.77, 0.77)
+
+[node name="Tree5" parent="Environment" instance=ExtResource("17_0tj7y")]
+position = Vector2(-1583, -1133)
+scale = Vector2(0.775, 0.775)
+
+[node name="Stones5" parent="Environment" instance=ExtResource("12_7wl3f")]
+position = Vector2(-1794, -1690)
+rotation = -3.14159
+scale = Vector2(1.24, -1.24)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(6, -2242)
+shape = SubResource("RectangleShape2D_hh35t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(9, 2237)
+shape = SubResource("RectangleShape2D_hh35t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-3917, -335)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_hh35t")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(3920, -200)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_hh35t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(-90, 110)
+polygon = PackedVector2Array(-1019, -1605, -1169, -1508, -1250, -1361, -1411, -1226, -1434, -1007, -1295, -826, -1066, -770, -860, -851, -526, -873, -52, -971, 330, -1045, 514, -1221, 422, -1351, 68, -1325, -236, -1451, -478, -1487, -669, -1596, -814, -1574)

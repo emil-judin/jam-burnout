@@ -2,11 +2,23 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var gun: Gun = $Gun
+@onready var character_body: CharacterBody2D = self
 @export var ui: UI
+@export var stomp_scene: PackedScene
 @export var movement_speed: float = 400
 @export var max_health_time: float = 300.0
-@export var start_health_time: float = 10.0  # seconds
+@export var start_health_time: float = 60  # seconds
+@export var lingering_timeout_enemies = 1
+@export var camera: Camera2D
 var health_timer: Timer = null
+var is_in_puddle = false
+var puddle_lingering_timeout = 0.2
+var puddle_lingering_timer = 0
+var current_stomp_instance = null
+var is_dead: bool = false
+var is_stomping: bool = false
 
 func _ready():
 	health_timer = Timer.new()
@@ -16,10 +28,26 @@ func _ready():
 	ui.initialize_health_ui(start_health_time, max_health_time)
 	health_timer.start()
 
+func _input(event):
+	if event.is_action_pressed("stomp") && current_stomp_instance == null:
+		is_stomping = true
+		animated_sprite.play("stomp_complete")
+		current_stomp_instance = stomp_scene.instantiate() as Stomp
+		add_child(current_stomp_instance)
+		current_stomp_instance.activate(character_body)
+		subtract_health_time(current_stomp_instance.cost)
+
 func _process(delta):
 	if !health_timer.is_stopped():
 		ui.update_countdown(health_timer.time_left)
 		ui.update_progress_bar(health_timer.time_left)
+		
+	if is_in_puddle:
+		if puddle_lingering_timer >= puddle_lingering_timeout:
+			subtract_health_time(0.1)
+			puddle_lingering_timer = 0
+		else:
+			puddle_lingering_timer += delta
 
 func add_heatlth_time(seconds: float) -> void:
 	if health_timer.time_left + seconds <= max_health_time:
@@ -34,10 +62,25 @@ func subtract_health_time(seconds: float) -> void:
 		_on_timer_timeout()
 
 func _on_timer_timeout():
-	health_timer.stop()
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/game/EndScreen.tscn")
+	if !is_dead:
+		health_timer.stop()
+		is_dead = true
+		remove_child(gun)
+		animation_player.play("death")
+		camera.do_death_animation()
+		await get_tree().create_timer(5).timeout
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game/EndScreen.tscn")
 
 func _physics_process(delta):
+	if is_stomping:
+		if !animated_sprite.is_playing():
+			is_stomping = false
+		return
+	
+	if is_dead:
+		animated_sprite.play("die")
+		return
+	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction.x > 0:
 		animated_sprite.play("side_walk")
@@ -69,12 +112,20 @@ func _on_area_entered(area: Area2D):
 		print("inceasing timer by " + str(time_item.time_value))
 		time_item_collected(time_item.time_value)
 		time_item.collect()
-	if parent is Enemy || parent is JumpingEnemy:
+	if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
+		parent
 		# Deal contact damage
 		print("decreasing timer by " + str(parent.contact_damage))
 		subtract_health_time(parent.contact_damage)
+	if parent is EnvironmentDamage:
+		is_in_puddle = true
 	if parent is EnemyBullet:
 		# Deal bullet damage
 		var enemy_bullet = parent as EnemyBullet
 		print("decreasing timer by " + str(enemy_bullet.damage))
 		subtract_health_time(enemy_bullet.damage)
+
+func _on_area_exited(area: Area2D):
+	var parent = area.get_parent()
+	if parent is EnvironmentDamage:
+		is_in_puddle = false

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxi1ws103j6y3"]
+
+[ext_resource type="Texture2D" uid="uid://dsw73lds3xdvq" path="res://assets/sprites/environments/tree2_upper.png" id="1_47dj4"]
+[ext_resource type="Texture2D" uid="uid://k7l4phxm2up8" path="res://assets/sprites/environments/tree2_lower.png" id="2_vddqb"]
+
+[node name="Tree2" type="Node2D"]
+
+[node name="Upper" type="Sprite2D" parent="."]
+z_index = 200
+position = Vector2(69.5, -336.5)
+texture = ExtResource("1_47dj4")
+
+[node name="Lower" type="Sprite2D" parent="."]
+z_index = 25
+position = Vector2(69, 169)
+texture = ExtResource("2_vddqb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lower"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lower/StaticBody2D"]
+polygon = PackedVector2Array(-148, -173, -139, -151, -127, -34, -155, 3, -204, -3, -271, 60, -338, 62, -381, 111, -211, 113, -153, 146, -76, 166, 58, 152, 280, 156, 354, 150, 332, 115, 296, 104, 239, 56, 180, -69, 136, -64, 78, -37, -6, -85, -9, -169, -83, -197, -141, -184)

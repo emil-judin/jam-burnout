@@ -1,16 +1,84 @@
-[gd_scene load_steps=4 format=3 uid="uid://lou47xvr4l6u"]
+[gd_scene load_steps=14 format=3 uid="uid://lou47xvr4l6u"]
 
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="1_ettuf"]
 [ext_resource type="Script" path="res://scripts/time_item.gd" id="1_r0m8i"]
+[ext_resource type="Texture2D" uid="uid://dq8lhm0v1o0tw" path="res://assets/sprites/environments/fire_glow.png" id="2_llet7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxjw7"]
+atlas = ExtResource("2_llet7")
+region = Rect2(0, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwv5i"]
+atlas = ExtResource("2_llet7")
+region = Rect2(281, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kufm2"]
+atlas = ExtResource("2_llet7")
+region = Rect2(562, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0wkl"]
+atlas = ExtResource("2_llet7")
+region = Rect2(0, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qscf"]
+atlas = ExtResource("2_llet7")
+region = Rect2(281, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60hyw"]
+atlas = ExtResource("2_llet7")
+region = Rect2(562, 418, 281, 418)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n5em"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxjw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwv5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kufm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0wkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qscf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60hyw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw5as"]
-size = Vector2(64, 64)
+size = Vector2(71, 66)
+
+[sub_resource type="Gradient" id="Gradient_aml0d"]
+offsets = PackedFloat32Array(0.0701754, 0.692982)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsygh"]
+gradient = SubResource("Gradient_aml0d")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="TimeItem" type="Node2D"]
 script = ExtResource("1_r0m8i")
 time_value = 10.0
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -125)
+sprite_frames = SubResource("SpriteFrames_7n5em")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.242277
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ettuf")
@@ -18,6 +86,13 @@ texture = ExtResource("1_ettuf")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_pw5as")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1, 1)
+color = Color(1, 0.603922, 0.0901961, 1)
+texture = SubResource("GradientTexture2D_wsygh")
+texture_scale = 18.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

@@ -21,7 +21,7 @@ func spawn_enemy():
 	
 	var random_enemy_type = randi_range(0, 2)
 	if random_enemy_type == 0:
-		# spawn walking enemy	
+		# spawn walking enemy
 		var enemy_instance = enemy_scene.instantiate() as Enemy
 		enemies.add_child(enemy_instance)
 		enemy_instance.target = player
@@ -33,8 +33,6 @@ func spawn_enemy():
 		enemies.add_child(jumping_enemy_instance)
 		jumping_enemy_instance.target = player
 		jumping_enemy_instance.global_position = random_spawn_point.global_position
-		jumping_enemy_instance.jump_start = random_spawn_point.global_position
-		jumping_enemy_instance.jump_target = player.global_position
 		jumping_enemy_instance.start_chase()
 	elif random_enemy_type == 2:
 		# spawn jumping enemy

@@ -95,20 +95,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1s4"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34xix"]
+size = Vector2(82, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo2u5"]
-size = Vector2(111, 101)
+size = Vector2(207, 202)
 
-[node name="Enemy" type="CharacterBody2D"]
-z_index = -1
+[node name="JumpingEnemy" type="CharacterBody2D"]
 script = ExtResource("1_v51be")
 jump_range = 500.0
 jump_speed = 0.5
 jump_height = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 50
+position = Vector2(-8, 35)
 sprite_frames = SubResource("SpriteFrames_cudym")
 animation = &"air"
 
@@ -118,13 +119,13 @@ modulate = Color(0.111962, 0.438077, 0.371136, 1)
 texture = ExtResource("2_76otw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0j1s4")
-disabled = true
+position = Vector2(1, -16)
+shape = SubResource("RectangleShape2D_34xix")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(6, -50)
 shape = SubResource("RectangleShape2D_jo2u5")
 
 [node name="HealthManager" parent="." instance=ExtResource("3_2mxud")]

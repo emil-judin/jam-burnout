@@ -25,7 +25,7 @@ func _physics_process(delta):
 		var direction = target.global_position - global_position
 		velocity = direction * movemenent_speed * delta
 		move_and_slide()
-		animated_sprite.flip_h = velocity.x < 0
+		animated_sprite.flip_h = velocity.x > 0
 	
 func start_chase():
 	is_chasing = true
@@ -40,6 +40,9 @@ func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
 		health_manager.receive_damage(bullet.damage)
-
+	if area.get_parent() is Stomp:
+			var stomp = area.get_parent() as Stomp
+			health_manager.receive_damage(stomp.damage)
+			
 func die():
 	queue_free()
