@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cb2btogqfqo0m"]
+[gd_scene load_steps=31 format=3 uid="uid://cb2btogqfqo0m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v2l1p"]
 [ext_resource type="Texture2D" uid="uid://sesb3khgu3op" path="res://assets/sprites/characters/back_walk_player.png" id="2_7xfs0"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://scripts/gun.gd" id="3_a15g0"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/FireBullet.tscn" id="4_r6acd"]
 [ext_resource type="Texture2D" uid="uid://b3c1fygmwbqrh" path="res://assets/sprites/characters/side_walk_player.png" id="5_umysj"]
+[ext_resource type="PackedScene" uid="uid://bf86s6an87qy2" path="res://assets/sounds/Player/FeuerBallSound.tscn" id="9_rdf7u"]
+[ext_resource type="AudioStream" uid="uid://cwivfyi3q2o3d" path="res://assets/sounds/Player/Flame Attack 1.mp3" id="10_54tgm"]
+[ext_resource type="PackedScene" uid="uid://0h34wgotwiif" path="res://assets/sounds/Player/PlayerDamage.tscn" id="11_cw5dl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbrwi"]
 atlas = ExtResource("2_7xfs0")
@@ -175,5 +178,10 @@ shape = SubResource("RectangleShape2D_c16nj")
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("3_a15g0")
 bullet_scene = ExtResource("4_r6acd")
+
+[node name="FeuerBallSound" parent="." instance=ExtResource("9_rdf7u")]
+stream = ExtResource("10_54tgm")
+
+[node name="PlayerDamage" parent="." instance=ExtResource("11_cw5dl")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

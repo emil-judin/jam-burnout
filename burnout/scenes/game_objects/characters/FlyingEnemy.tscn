@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxo4v6la8agb7"]
+[gd_scene load_steps=15 format=3 uid="uid://bxo4v6la8agb7"]
 
 [ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_y1bx2"]
 [ext_resource type="Texture2D" uid="uid://bw37hjhr0m6l5" path="res://assets/sprites/characters/walk_mousnake.png" id="2_he8tq"]
 [ext_resource type="PackedScene" uid="uid://dv2gcdbr10esg" path="res://scenes/game_objects/EnemyBullet.tscn" id="2_rl05j"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="3_d81is"]
-[ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="4_s0q11"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/HealthManager.tscn" id="4_s0q11"]
+[ext_resource type="PackedScene" uid="uid://88peymj2jp4v" path="res://assets/sounds/Enemy/EnemyDamageSound.tscn" id="6_xaxsq"]
+[ext_resource type="PackedScene" uid="uid://d5fq1ifpmpy2" path="res://assets/sounds/Enemy/FlyEnemyShoot.tscn" id="7_xb47n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fpgn"]
 atlas = ExtResource("2_he8tq")
@@ -75,6 +77,10 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jo2u5")
 
 [node name="HealthManager" parent="." instance=ExtResource("4_s0q11")]
+
+[node name="EnemyHit" parent="." instance=ExtResource("6_xaxsq")]
+
+[node name="FlyEnemyShoot" parent="." instance=ExtResource("7_xb47n")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="died" from="HealthManager" to="." method="die"]

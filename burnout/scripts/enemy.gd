@@ -25,6 +25,7 @@ func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
 		health_manager.receive_damage(bullet.damage)
+		$EnemyDamageSound.play()
 
 func die():
 	queue_free()

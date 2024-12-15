@@ -15,6 +15,7 @@ func _ready():
 	health_timer.connect("timeout", func(): _on_timer_timeout())
 	ui.initialize_health_ui(start_health_time, max_health_time)
 	health_timer.start()
+	$FeuerBallSound.play()
 
 func _process(delta):
 	if !health_timer.is_stopped():
@@ -73,8 +74,10 @@ func _on_area_entered(area: Area2D):
 		# Deal contact damage
 		print("decreasing timer by " + str(parent.contact_damage))
 		subtract_health_time(parent.contact_damage)
+		$PlayerDamage.play()
 	if parent is EnemyBullet:
 		# Deal bullet damage
 		var enemy_bullet = parent as EnemyBullet
 		print("decreasing timer by " + str(enemy_bullet.damage))
 		subtract_health_time(enemy_bullet.damage)
+		$PlayerDamage.play()

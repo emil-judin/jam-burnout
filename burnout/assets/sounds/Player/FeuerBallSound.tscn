@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf86s6an87qy2"]
+
+[ext_resource type="AudioStream" uid="uid://dgdbgwhf8jbod" path="res://assets/sounds/drop03-82909.mp3" id="1_e6uwc"]
+
+[node name="FeuerBallSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_e6uwc")
+volume_db = 3.0

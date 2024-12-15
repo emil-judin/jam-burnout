@@ -15,6 +15,7 @@ func _input(event):
 	if event.is_action_pressed("shoot") && !auto_shoot:
 		shoot()
 
+
 func shoot():
 	# instantiate bullet
 		var direction_to_mouse = get_global_mouse_position() - global_position

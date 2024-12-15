@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://7yysxnjkqrgl"]
+[gd_scene load_steps=13 format=3 uid="uid://7yysxnjkqrgl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mkx8c"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="1_v6eyg"]
 [ext_resource type="Texture2D" uid="uid://bw37hjhr0m6l5" path="res://assets/sprites/characters/walk_mousnake.png" id="2_7auf7"]
-[ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="3_ndkax"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/HealthManager.tscn" id="3_ndkax"]
+[ext_resource type="PackedScene" uid="uid://88peymj2jp4v" path="res://assets/sounds/Enemy/EnemyDamageSound.tscn" id="5_k8xj4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fpgn"]
 atlas = ExtResource("2_7auf7")
@@ -73,6 +74,8 @@ position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_jo2u5")
 
 [node name="HealthManager" parent="." instance=ExtResource("3_ndkax")]
+
+[node name="EnemyDamageSound" parent="." instance=ExtResource("5_k8xj4")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="died" from="HealthManager" to="." method="die"]

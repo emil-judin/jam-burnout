@@ -29,6 +29,7 @@ func _physics_process(delta):
 				
 				# set new jump position
 				animated_sprite.play("jump_start")
+				$SpiderJump.play()
 				jump_start = global_position
 				var jump_to_target_position = target.position - jump_start
 				if jump_to_target_position.length() <= jump_range:
@@ -90,6 +91,7 @@ func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
 		health_manager.receive_damage(bullet.damage)
+		$EnemyHit.play()
 
 func die():
 	queue_free()
