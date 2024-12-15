@@ -1,5 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://bxjavkjyqwoeh"]
+[gd_scene load_steps=14 format=3 uid="uid://bxjavkjyqwoeh"]
 
+[ext_resource type="Script" path="res://scenes/game/test_scene_movement.gd" id="1_6tg80"]
+[ext_resource type="Texture2D" uid="uid://hea3lvthrn4k" path="res://assets/sprites/environments/test_environment.png" id="2_ldbc0"]
 [ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="2_mknsx"]
 [ext_resource type="PackedScene" uid="uid://lou47xvr4l6u" path="res://scenes/game_objects/TimeItem.tscn" id="2_ptd5y"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_qjdxk"]
@@ -58,6 +60,7 @@ _data = {
 size = Vector2(7861, 172)
 
 [node name="TestSceneMovement" type="Node2D"]
+script = ExtResource("1_6tg80")
 
 [node name="Player" parent="." node_paths=PackedStringArray("ui", "camera") instance=ExtResource("2_mknsx")]
 position = Vector2(5, -60)
@@ -84,6 +87,10 @@ texture = ExtResource("2_yfjpm")
 
 [node name="TimeItem" parent="." instance=ExtResource("2_ptd5y")]
 position = Vector2(1488, 100)
+[node name="Ground2" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(2867, 536)
+texture = ExtResource("3_jwyg5")
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("3_qnb4v")]
 player = NodePath("../Player")

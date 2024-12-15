@@ -9,8 +9,8 @@ const FILE_NAME: String = "burnout_highscores.tres"
 var highscore_list: ScoreList = ScoreList.new() # neue ScoreList wird Erzeugt
 
 
-@onready var highscore_display: Label = $HighscoreDisplay
-
+@export var highscore_display: Label
+@export_file("*.tscn") var main_menu_path: String
 
 func _ready():
 	# Ruft die Funktionen zum laden und darstellen/aktualisieren der Highscoreliste auf.
@@ -26,7 +26,7 @@ func load_highscores():
 
 # Updatet die Darstellung der Highscoreliste
 func update_highscore_display():
-	print("test1")
+	
 	# Stellt sicher das das display leer ist.
 	highscore_display.text = ""
 	
@@ -36,4 +36,6 @@ func update_highscore_display():
 		#print(highscore_list.names[i] + ": " + str(highscore_list.times[i]) + "\n")
 
 func _on_quit_pressed():
-	get_tree().quit()
+	ClickSound.play()
+	await ClickSound.finished
+	get_tree().call_deferred("change_scene_to_file", main_menu_path)

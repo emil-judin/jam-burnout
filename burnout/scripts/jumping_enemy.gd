@@ -19,9 +19,27 @@ var jump_progress = 0
 var waiting_timer = 0
 
 func _physics_process(delta):
-	if !is_chasing || target == null:
-		print("No target or not chasing")
-		return
+	if is_chasing && target != null:
+		if is_waiting:
+			animated_sprite.play("idle")
+			if waiting_timer >= jump_delay:
+				waiting_timer = 0
+				jump_progress = 0
+				is_waiting = false
+				is_jumping = true
+				
+				# set new jump position
+				animated_sprite.play("jump_start")
+				$SpiderJump.play()
+				jump_start = global_position
+				var jump_to_target_position = target.position - jump_start
+				if jump_to_target_position.length() <= jump_range:
+					jump_target = target.global_position
+				else:
+					jump_target = jump_start + jump_to_target_position.normalized() * jump_range
+			else:
+				waiting_timer += delta
+				return
 		
 	if is_waiting:
 		animated_sprite.play("idle")
@@ -105,6 +123,7 @@ func _on_area_entered(area: Area2D):
 		health_manager.receive_damage(bullet.damage)
 	if area.get_parent() is Stomp:
 		die()
+		$EnemyHit.play()
 
 func die():
 	queue_free()

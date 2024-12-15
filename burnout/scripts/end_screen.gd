@@ -13,15 +13,21 @@ var highscore_list: ScoreList = ScoreList.new() # neue ScoreList wird Erzeugt
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	BackgroundMusic.stop()
+	$GameOverSound.play()
 	run_time_display.text = "Your time: " + run_time
+
 	
 	if !DirAccess.dir_exists_absolute(FILE_PATH):
 		DirAccess.make_dir_absolute(FILE_PATH)
 	
 	load_highscores()
 
+
 func _on_name_input_text_submitted(_new_text: String) -> void:
 	save_run_time()
+	ClickSound.play()
+	await ClickSound.finished
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/game/HighscoreBoard.tscn")
 
 func save_run_time():

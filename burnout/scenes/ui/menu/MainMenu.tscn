@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=5 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
+[ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
+[ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="3_tov7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6280"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +15,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xm6ub")
-start_scene_path = "res://scenes/game/TestSceneMovement.tscn"
+intro_scene_path = "res://scenes/game/Intro.tscn"
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6280")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -19,33 +34,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/normal_font_size = 200
-text = "BURNOUT"
-fit_content = true
-autowrap_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/normal_font = ExtResource("2_357cy")
+theme_override_font_sizes/normal_font_size = 250
+text = "BURN OUT"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_357cy")
+theme_override_font_sizes/font_size = 150
+text = "The Last Flame
+"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_tov7v")
 theme_override_font_sizes/font_size = 150
 text = "Start"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tov7v")
 theme_override_font_sizes/font_size = 150
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_clicked"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_clicked"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]
