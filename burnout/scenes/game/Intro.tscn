@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cai1xqxavnc41"]
+
+[ext_resource type="Script" path="res://scripts/intro.gd" id="1_x0njm"]
+[ext_resource type="VideoStream" path="res://assets/other/Cutszene OGV.ogv" id="2_njohb"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x0njm")
+main_scene_path = "res://scenes/game/TestSceneMovement.tscn"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_njohb")
+volume_db = -6.0
+autoplay = true
+expand = true

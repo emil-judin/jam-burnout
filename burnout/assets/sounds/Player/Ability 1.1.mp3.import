@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfjlwg4btxu6l"
+path="res://.godot/imported/Ability 1.1.mp3-2b22eccfe47c47dd3da07e3fd32af75e.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Player/Ability 1.1.mp3"
+dest_files=["res://.godot/imported/Ability 1.1.mp3-2b22eccfe47c47dd3da07e3fd32af75e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

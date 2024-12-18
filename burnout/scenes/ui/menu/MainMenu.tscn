@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=5 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="3_tov7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6280"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,7 +15,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xm6ub")
-start_scene_path = "res://scenes/game/TestSceneMovement.tscn"
+intro_scene_path = "res://scenes/game/Intro.tscn"
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6280")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

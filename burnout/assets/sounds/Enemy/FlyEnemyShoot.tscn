@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d5fq1ifpmpy2"]
+
+[ext_resource type="AudioStream" uid="uid://6uftldwbnnge" path="res://assets/sounds/Enemy/MoskitoPukeAudio.wav" id="1_id3a5"]
+
+[node name="FlyEnemyShoot" type="AudioStreamPlayer"]
+stream = ExtResource("1_id3a5")
+volume_db = -12.0

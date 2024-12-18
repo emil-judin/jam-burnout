@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg3k045guh3ha"]
+[gd_scene load_steps=5 format=3 uid="uid://cg3k045guh3ha"]
 
 [ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_vv31f"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_sf441"]
+[ext_resource type="AudioStream" uid="uid://b48juf0xcylqx" path="res://assets/sounds/Background/Highscore board sound.mp3" id="3_14r8a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6527"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -11,6 +15,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vv31f")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l6527")
 
 [node name="RunTimeDisplay" type="Label" parent="."]
 layout_mode = 1
@@ -36,15 +50,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -280.0
-offset_right = 250.0
-offset_bottom = -180.0
+offset_left = -335.0
+offset_top = -287.0
+offset_right = 335.0
+offset_bottom = -173.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_sf441")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 80
 placeholder_text = "Enter your name"
 max_length = 16
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_14r8a")
+volume_db = -10.0
 
 [connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]

@@ -27,6 +27,7 @@ func _ready():
 	health_timer.connect("timeout", func(): _on_timer_timeout())
 	ui.initialize_health_ui(start_health_time, max_health_time)
 	health_timer.start()
+	$FeuerBallSound.play()
 
 func _input(event):
 	if event.is_action_pressed("stomp") && current_stomp_instance == null:
@@ -119,6 +120,7 @@ func _on_area_entered(area: Area2D):
 		subtract_health_time(parent.contact_damage)
 	if parent is EnvironmentDamage:
 		is_in_puddle = true
+		$PlayerDamage.play()
 	if parent is EnemyBullet:
 		# Deal bullet damage
 		var enemy_bullet = parent as EnemyBullet
@@ -129,3 +131,4 @@ func _on_area_exited(area: Area2D):
 	var parent = area.get_parent()
 	if parent is EnvironmentDamage:
 		is_in_puddle = false
+		$PlayerDamage.play()

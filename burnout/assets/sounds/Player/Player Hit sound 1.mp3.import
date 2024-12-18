@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djw852ychwann"
+path="res://.godot/imported/Player Hit sound 1.mp3-8cd135236a85a36a2b6aedbc5468454f.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Player/Player Hit sound 1.mp3"
+dest_files=["res://.godot/imported/Player Hit sound 1.mp3-8cd135236a85a36a2b6aedbc5468454f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

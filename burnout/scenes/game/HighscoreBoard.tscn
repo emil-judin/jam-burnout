@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfgfnqdo1p2vm"]
+[gd_scene load_steps=5 format=3 uid="uid://dfgfnqdo1p2vm"]
 
 [ext_resource type="Script" path="res://scripts/Scoreboard.gd" id="1_si6lw"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_mh3u6"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_owhxi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wp5o"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="HighscoreBoard" type="Control" node_paths=PackedStringArray("highscore_display")]
 layout_mode = 3
@@ -13,7 +16,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_si6lw")
 highscore_display = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HighscoreDisplay")
+main_menu_path = "res://scenes/ui/menu/MainMenu.tscn"
 metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6wp5o")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -56,12 +70,12 @@ theme_override_font_sizes/font_size = 80
 text = "Display"
 horizontal_alignment = 1
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ReloadButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_owhxi")
 theme_override_font_sizes/font_size = 120
-text = "Quit"
+text = "Play Again"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ReloadButton" to="." method="_on_quit_pressed"]
