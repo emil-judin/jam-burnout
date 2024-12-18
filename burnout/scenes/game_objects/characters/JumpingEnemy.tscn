@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/jumping_enemy.gd" id="1_v51be"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_76otw"]
 [ext_resource type="Texture2D" uid="uid://bfx3cifps2yle" path="res://assets/sprites/characters/jump_spider.png" id="2_n8sq2"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/HealthManager.tscn" id="3_2mxud"]
+[ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="3_2mxud"]
 [ext_resource type="Texture2D" uid="uid://yduihphlo2ct" path="res://assets/sprites/characters/spiderling_idle.png" id="3_nky8l"]
 [ext_resource type="PackedScene" uid="uid://88peymj2jp4v" path="res://assets/sounds/Enemy/EnemyDamageSound.tscn" id="6_jtab7"]
 [ext_resource type="PackedScene" uid="uid://b0ptwijg54v27" path="res://assets/sounds/Enemy/SpiderJump.tscn" id="7_bwuog"]

@@ -42,10 +42,10 @@ func _on_area_entered(area: Area2D):
 		var bullet = area.get_parent() as FireBullet
 		health_manager.receive_damage(bullet.damage)
 	if area.get_parent() is Stomp:
-			var stomp = area.get_parent() as Stomp
-			health_manager.receive_damage(stomp.damage)
+		var stomp = area.get_parent() as Stomp
+		health_manager.receive_damage(stomp.damage)
 			
-		$EnemyHit.play()
+	$EnemyHit.play()
 
 func die():
 	queue_free()
