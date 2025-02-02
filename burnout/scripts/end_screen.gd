@@ -8,8 +8,8 @@ var highscore_list: ScoreList = ScoreList.new() # neue ScoreList wird Erzeugt
 
 @onready var run_time: String = UI.run_time_output()
 @onready var score: int = UI.current_score
-@onready var run_time_display: Label = $RunTimeDisplay
-@onready var name_input: LineEdit = $NameInput
+@export var run_time_display: Label
+@export var name_input: LineEdit
 
 static var last_name: String = ""
 static var last_score: int = -1
@@ -27,6 +27,12 @@ func _ready() -> void:
 
 
 func _on_name_input_text_submitted(_new_text: String) -> void:
+	save_run_time()
+	ClickSound.play()
+	await ClickSound.finished
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/game/HighscoreBoard.tscn")
+
+func _on_save_button_pressed():
 	save_run_time()
 	ClickSound.play()
 	await ClickSound.finished

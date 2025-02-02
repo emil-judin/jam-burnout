@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxjavkjyqwoeh"]
+[gd_scene load_steps=25 format=3 uid="uid://bxjavkjyqwoeh"]
 
 [ext_resource type="Script" path="res://scenes/game/test_scene_movement.gd" id="1_6tg80"]
 [ext_resource type="PackedScene" uid="uid://cb2btogqfqo0m" path="res://scenes/game_objects/characters/Player.tscn" id="2_mknsx"]
@@ -54,6 +54,15 @@ _data = {
 "RESET": SubResource("Animation_u16c5"),
 "death_animation": SubResource("Animation_lb0px")
 }
+
+[sub_resource type="Gradient" id="Gradient_5xfcu"]
+offsets = PackedFloat32Array(0, 0.446377)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jsi6g"]
+gradient = SubResource("Gradient_5xfcu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh35t"]
 size = Vector2(7861, 172)
@@ -270,6 +279,30 @@ scale = Vector2(0.775, 0.775)
 position = Vector2(-1794, -1690)
 rotation = -3.14159
 scale = Vector2(1.24, -1.24)
+
+[node name="SwordGlow" type="PointLight2D" parent="Environment"]
+position = Vector2(1245, -549)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+texture = SubResource("GradientTexture2D_jsi6g")
+texture_scale = 18.0
+
+[node name="SwordGlow2" type="PointLight2D" parent="Environment"]
+position = Vector2(1692, -1934)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+texture = SubResource("GradientTexture2D_jsi6g")
+texture_scale = 18.0
+
+[node name="SwordGlow3" type="PointLight2D" parent="Environment"]
+position = Vector2(-3513, 86)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+texture = SubResource("GradientTexture2D_jsi6g")
+texture_scale = 18.0
+
+[node name="SwordGlow4" type="PointLight2D" parent="Environment"]
+position = Vector2(-423, -759)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+texture = SubResource("GradientTexture2D_jsi6g")
+texture_scale = 18.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
 

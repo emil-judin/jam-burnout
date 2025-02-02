@@ -75,6 +75,7 @@ func subtract_health_time(seconds: float) -> void:
 func _on_timer_timeout():
 	if !is_dead:
 		health_timer.stop()
+		ui.update_progress_bar(0)
 		is_dead = true
 		remove_child(gun)
 		animation_player.play("death")

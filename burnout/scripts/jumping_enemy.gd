@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if is_chasing && target != null:
 		if is_waiting:
 			animated_sprite.play("idle")
-			if waiting_timer >= jump_delay:
+			if waiting_timer >= jump_delay + RandomNumberGenerator.new().randf_range(-0.1, 0.1):
 				waiting_timer = 0
 				jump_progress = 0
 				is_waiting = false
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		
 	if is_waiting:
 		animated_sprite.play("idle")
-		if waiting_timer >= jump_delay:
+		if waiting_timer >= jump_delay + RandomNumberGenerator.new().randf_range(-0.1, 0.1):
 			waiting_timer = 0
 			jump_progress = 0
 			is_waiting = false
