@@ -9,6 +9,7 @@ class_name JumpingEnemy
 @export var jump_height: float = 5
 @export var jump_delay: float = 1
 @export var contact_damage: float = 1
+@export var points: int = 50
 var jump_start: Vector2
 var jump_target: Vector2
 var target: Node2D
@@ -126,4 +127,5 @@ func _on_area_entered(area: Area2D):
 		$EnemyHit.play()
 
 func die():
+	UI.current_score += points
 	queue_free()

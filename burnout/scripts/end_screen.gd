@@ -7,16 +7,18 @@ const FILE_NAME: String = "burnout_highscores.tres"
 var highscore_list: ScoreList = ScoreList.new() # neue ScoreList wird Erzeugt
 
 @onready var run_time: String = UI.run_time_output()
+@onready var score: int = UI.current_score
 @onready var run_time_display: Label = $RunTimeDisplay
 @onready var name_input: LineEdit = $NameInput
 
+static var last_name: String = ""
+static var last_score: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	BackgroundMusic.stop()
 	$GameOverSound.play()
-	run_time_display.text = "Your time: " + run_time
-
+	run_time_display.text = "Your score: " + str(score)
 	
 	if !DirAccess.dir_exists_absolute(FILE_PATH):
 		DirAccess.make_dir_absolute(FILE_PATH)
@@ -36,7 +38,9 @@ func save_run_time():
 		return
 	
 	# Fügt der Highscoreliste einen neuen Eintrag hinzu.
-	highscore_list.add_score_entry(name_input.text, run_time)
+	highscore_list.add_score_entry(name_input.text, score)
+	last_name = name_input.text
+	last_score = score
 	
 	# Speichert die Änderungen
 	save_highscores()
@@ -53,5 +57,5 @@ func load_highscores():
 # Speichert die Highscoreliste ab.
 func save_highscores():
 	for i:int in range (0, highscore_list.names.size()):
-		print(highscore_list.names[i] + ": " + str(highscore_list.times[i]) + "\n")
+		print(highscore_list.names[i] + ": " + str(highscore_list.scores[i]) + "\n")
 	ResourceSaver.save(highscore_list, FILE_PATH + FILE_NAME)

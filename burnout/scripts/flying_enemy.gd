@@ -7,6 +7,7 @@ class_name FlyingEnemy
 @export var movemenent_speed: float = 10
 @export var contact_damage: float = 1
 @export var shoot_frequency = 1
+@export var points: int = 50
 var target: Node2D
 var is_chasing = false
 var shoot_timer: float
@@ -48,4 +49,5 @@ func _on_area_entered(area: Area2D):
 	$EnemyHit.play()
 
 func die():
+	UI.current_score += points
 	queue_free()

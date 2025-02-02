@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfgfnqdo1p2vm"]
+[gd_scene load_steps=6 format=3 uid="uid://dfgfnqdo1p2vm"]
 
 [ext_resource type="Script" path="res://scripts/Scoreboard.gd" id="1_si6lw"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_mh3u6"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_owhxi"]
+[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="3_wav6s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wp5o"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="HighscoreBoard" type="Control" node_paths=PackedStringArray("highscore_display")]
+[node name="HighscoreBoard" type="Control" node_paths=PackedStringArray("first_place_label", "second_place_label", "third_place_label", "highscore_display", "highscore_scroll_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +16,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_si6lw")
-highscore_display = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HighscoreDisplay")
+first_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FirstPlaceLabel")
+second_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SecondPlaceLabel")
+third_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/ThirdPlaceLabel")
+highscore_display = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RichTextLabel")
+highscore_scroll_container = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer")
 main_menu_path = "res://scenes/ui/menu/MainMenu.tscn"
 game_scene_path = "res://scenes/game/TestSceneMovement.tscn"
 metadata/_edit_use_anchors_ = true
@@ -57,18 +62,84 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 385
 
-[node name="HighscoreDisplay" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("2_owhxi")
-theme_override_font_sizes/font_size = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_wav6s")
+
+[node name="FirstPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_mh3u6")
+theme_override_font_sizes/normal_font_size = 50
+text = "First Place"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_wav6s")
+
+[node name="SecondPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_mh3u6")
+theme_override_font_sizes/normal_font_size = 50
+text = "Second Place"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("3_wav6s")
+
+[node name="ThirdPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_mh3u6")
+theme_override_font_sizes/normal_font_size = 50
+text = "Third Place"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_owhxi")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
 text = "Display"
-horizontal_alignment = 1
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

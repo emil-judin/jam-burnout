@@ -3,8 +3,8 @@ class_name Player
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hit_box: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var gun: Gun = $Gun
-@onready var character_body: CharacterBody2D = self
 @export var ui: UI
 @export var stomp_scene: PackedScene
 @export var movement_speed: float = 400
@@ -12,7 +12,9 @@ class_name Player
 @export var start_health_time: float = 60  # seconds
 @export var lingering_timeout_enemies = 1
 @export var camera: Camera2D
+const time_frame_length: int = 5
 var health_timer: Timer = null
+var survived_timer: float = 0
 var is_in_puddle = false
 var puddle_lingering_timeout = 0.2
 var puddle_lingering_timer = 0
@@ -21,6 +23,8 @@ var is_dead: bool = false
 var is_stomping: bool = false
 
 func _ready():
+	survived_timer = 0
+	
 	health_timer = Timer.new()
 	health_timer.set_wait_time(start_health_time)
 	add_child(health_timer)
@@ -35,12 +39,18 @@ func _input(event):
 		animated_sprite.play("stomp_complete")
 		current_stomp_instance = stomp_scene.instantiate() as Stomp
 		add_child(current_stomp_instance)
-		current_stomp_instance.activate(character_body)
+		current_stomp_instance.activate(self)
 		subtract_health_time(current_stomp_instance.cost)
 
 func _process(delta):
+	survived_timer += delta
+	
 	if !health_timer.is_stopped():
-		ui.update_countdown(health_timer.time_left)
+		var time_frames_survived = int(survived_timer / time_frame_length)
+		if time_frames_survived >= 1:
+			survived_timer = 0
+			ui.update_time_score(time_frames_survived)
+		#ui.update_countdown(health_timer.time_left)
 		ui.update_progress_bar(health_timer.time_left)
 		
 	if is_in_puddle:
@@ -80,6 +90,7 @@ func _physics_process(delta):
 	
 	if is_dead:
 		animated_sprite.play("die")
+		hit_box.disabled = true
 		return
 	
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -110,13 +121,12 @@ func _on_area_entered(area: Area2D):
 	var parent = area.get_parent()
 	if parent is TimeItem:
 		var time_item = parent as TimeItem
-		print("inceasing timer by " + str(time_item.time_value))
+		#print("inceasing timer by " + str(time_item.time_value))
 		time_item_collected(time_item.time_value)
 		time_item.collect()
 	if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
-		parent
 		# Deal contact damage
-		print("decreasing timer by " + str(parent.contact_damage))
+		#print("decreasing timer by " + str(parent.contact_damage))
 		subtract_health_time(parent.contact_damage)
 	if parent is EnvironmentDamage:
 		is_in_puddle = true
@@ -124,7 +134,7 @@ func _on_area_entered(area: Area2D):
 	if parent is EnemyBullet:
 		# Deal bullet damage
 		var enemy_bullet = parent as EnemyBullet
-		print("decreasing timer by " + str(enemy_bullet.damage))
+		#print("decreasing timer by " + str(enemy_bullet.damage))
 		subtract_health_time(enemy_bullet.damage)
 
 func _on_area_exited(area: Area2D):
