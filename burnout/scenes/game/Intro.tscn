@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cai1xqxavnc41"]
+[gd_scene load_steps=7 format=3 uid="uid://cai1xqxavnc41"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_x0njm"]
 [ext_resource type="VideoStream" path="res://assets/other/Cutszene OGV.ogv" id="2_njohb"]
+[ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="3_nwwt4"]
+
+[sub_resource type="Animation" id="Animation_rre0n"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gef32"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/RichTextLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yso5x"]
+_data = {
+"RESET": SubResource("Animation_gef32"),
+"blink": SubResource("Animation_rre0n")
+}
 
 [node name="Intro" type="Control"]
 layout_mode = 3
@@ -24,3 +62,28 @@ stream = ExtResource("2_njohb")
 volume_db = -6.0
 autoplay = true
 expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yso5x")
+}
+autoplay = "blink"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_nwwt4")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]Press Enter to Skip Intro[/center]"
+fit_content = true

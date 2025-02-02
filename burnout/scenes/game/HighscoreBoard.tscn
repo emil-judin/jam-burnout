@@ -17,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_si6lw")
 highscore_display = NodePath("MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HighscoreDisplay")
 main_menu_path = "res://scenes/ui/menu/MainMenu.tscn"
+game_scene_path = "res://scenes/game/TestSceneMovement.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -45,7 +46,6 @@ layout_mode = 2
 [node name="HighscoreText" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("2_mh3u6")
 theme_override_font_sizes/font_size = 180
 text = "Highscores"
@@ -70,7 +70,11 @@ theme_override_font_sizes/font_size = 80
 text = "Display"
 horizontal_alignment = 1
 
-[node name="ReloadButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ReplayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -78,4 +82,13 @@ theme_override_fonts/font = ExtResource("2_owhxi")
 theme_override_font_sizes/font_size = 120
 text = "Play Again"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ReloadButton" to="." method="_on_quit_pressed"]
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("2_owhxi")
+theme_override_font_sizes/font_size = 120
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

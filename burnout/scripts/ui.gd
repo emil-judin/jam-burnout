@@ -1,12 +1,15 @@
 class_name UI
 extends CanvasLayer
 
-static var game_start_time = Time.get_ticks_msec()
+static var game_start_time
 
 @export var countdown_label: RichTextLabel
 @export var progress_bar: ProgressBar
 #@export var flame_texture: Sprite2D
 @export var flame_texture: TextureRect
+
+static func reset_game_start_time():
+	UI.game_start_time = Time.get_ticks_msec()
 
 func initialize_health_ui(start_health_time: float, max_health_time: float):
 	progress_bar.max_value = max_health_time
