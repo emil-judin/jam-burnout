@@ -50,6 +50,7 @@ layout_mode = 2
 
 [node name="RunTimeDisplay" type="Label" parent="TextureRect/MarginContainer/CenterContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 60
 theme_override_fonts/font = ExtResource("2_v8ytp")
 theme_override_font_sizes/font_size = 200
 text = "Your score: 10000"

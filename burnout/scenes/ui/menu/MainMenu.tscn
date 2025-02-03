@@ -106,12 +106,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1220, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme_override_constants/outline_size = 100
 theme_override_fonts/normal_font = ExtResource("2_357cy")
 theme_override_font_sizes/normal_font_size = 250
-text = "BURN OUT"
+text = " BURN OUT "
 fit_content = true
 autowrap_mode = 0
 
@@ -119,6 +121,7 @@ autowrap_mode = 0
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme_override_constants/outline_size = 100
 theme_override_fonts/font = ExtResource("2_357cy")
 theme_override_font_sizes/font_size = 150
 text = "The Last Flame

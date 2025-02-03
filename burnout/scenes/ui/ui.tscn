@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://76a05owd81yc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_qv1m4"]
-[ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_i4j4n"]
+[ext_resource type="FontFile" uid="uid://bw7i5ex7v82vb" path="res://assets/fonts/morning_breeze/MorningBreeze.otf" id="2_dsaal"]
 [ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/characters/main_char_head.png" id="2_pbnqi"]
 [ext_resource type="Shader" path="res://assets/shaders/fire_shader.gdshader" id="3_df6dr"]
 
@@ -84,8 +84,9 @@ text_direction = 2
 
 [node name="ScoreLabel" type="RichTextLabel" parent="Control/MainContainer/TopBox/MarginContainer2"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_i4j4n")
-theme_override_font_sizes/normal_font_size = 120
+theme_override_constants/outline_size = 40
+theme_override_fonts/normal_font = ExtResource("2_dsaal")
+theme_override_font_sizes/normal_font_size = 150
 text = "100000"
 fit_content = true
 text_direction = 2
