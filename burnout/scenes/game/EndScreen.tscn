@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg3k045guh3ha"]
+[gd_scene load_steps=10 format=3 uid="uid://cg3k045guh3ha"]
 
 [ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_vv31f"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_sf441"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_v8ytp"]
 [ext_resource type="AudioStream" uid="uid://b48juf0xcylqx" path="res://assets/sounds/Background/Highscore board sound.mp3" id="3_14r8a"]
+[ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="4_fjj6w"]
+[ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_vpqso"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6527"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3c3l"]
+texture = ExtResource("4_fjj6w")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gwatw"]
+texture = ExtResource("4_vpqso")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
 
 [node name="EndScreen" type="Control" node_paths=PackedStringArray("run_time_display", "name_input")]
 layout_mode = 3
@@ -65,8 +77,17 @@ max_length = 16
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("2_sf441")
 theme_override_font_sizes/font_size = 160
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b3c3l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_gwatw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gwatw")
 text = "Save"
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]

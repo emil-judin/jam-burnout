@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfgfnqdo1p2vm"]
+[gd_scene load_steps=14 format=3 uid="uid://dfgfnqdo1p2vm"]
 
 [ext_resource type="Script" path="res://scripts/Scoreboard.gd" id="1_si6lw"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_mh3u6"]
@@ -6,9 +6,31 @@
 [ext_resource type="Texture2D" uid="uid://cm238pej1sth" path="res://assets/sprites/golden_trophy.PNG" id="3_n5urq"]
 [ext_resource type="Texture2D" uid="uid://b10tofdraiyqv" path="res://assets/sprites/silver_trophy.PNG" id="4_1d6cm"]
 [ext_resource type="Texture2D" uid="uid://ex24kepjftm6" path="res://assets/sprites/bronze_trophy.PNG" id="5_gp4o6"]
+[ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="7_h1bfp"]
+[ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="8_0itym"]
+[ext_resource type="StyleBox" uid="uid://d30st0mo7ybvs" path="res://assets/sprites/button_style_box.tres" id="9_pf31g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wp5o"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8w6l"]
+texture = ExtResource("7_h1bfp")
+texture_margin_left = 25.0
+texture_margin_top = 14.0
+texture_margin_right = 25.0
+texture_margin_bottom = 41.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l61cm"]
+texture = ExtResource("8_0itym")
+texture_margin_left = 25.0
+texture_margin_top = 14.0
+texture_margin_right = 25.0
+texture_margin_bottom = 41.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o0j3p"]
+texture = ExtResource("7_h1bfp")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
 
 [node name="HighscoreBoard" type="Control" node_paths=PackedStringArray("first_place_label", "second_place_label", "third_place_label", "highscore_display", "highscore_scroll_container")]
 layout_mode = 3
@@ -151,16 +173,34 @@ theme_override_constants/separation = 25
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("2_owhxi")
 theme_override_font_sizes/font_size = 140
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v8w6l")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_l61cm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l61cm")
 text = "Play Again"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("2_owhxi")
 theme_override_font_sizes/font_size = 140
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_o0j3p")
+theme_override_styles/normal_mirrored = ExtResource("9_pf31g")
+theme_override_styles/normal = ExtResource("9_pf31g")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_pressed"]
