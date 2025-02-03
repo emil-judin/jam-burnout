@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=20 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://6vos22325hfc" path="res://assets/sprites/leaves1.png" id="5_ak3mt"]
 [ext_resource type="Texture2D" uid="uid://b1t5jg1pu14sm" path="res://assets/sprites/leaves2.png" id="6_v6gaq"]
 [ext_resource type="Texture2D" uid="uid://bwysvpc2mf5e0" path="res://assets/sprites/leaves3.png" id="7_7dhfw"]
+[ext_resource type="AudioStream" uid="uid://mxexrpwppa61" path="res://assets/sounds/Background/background_music.MP3" id="12_5vegg"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_h81n7"]
 frames = 3
@@ -181,6 +182,11 @@ color = Color(1.92523e-06, 0.703576, 0.993748, 1)
 energy = 1.15
 texture = SubResource("GradientTexture2D_w4qrd")
 texture_scale = 18.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_5vegg")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
 [connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]
