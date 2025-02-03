@@ -11,9 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="8_0itym"]
 [ext_resource type="StyleBox" uid="uid://d30st0mo7ybvs" path="res://assets/sprites/button_style_box.tres" id="9_pf31g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wp5o"]
-bg_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8w6l"]
 texture = ExtResource("7_h1bfp")
 texture_margin_left = 25.0

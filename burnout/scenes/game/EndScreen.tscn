@@ -6,9 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://b48juf0xcylqx" path="res://assets/sounds/Background/Highscore board sound.mp3" id="3_14r8a"]
 [ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="4_fjj6w"]
 [ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_vpqso"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6527"]
-bg_color = Color(0, 0, 0, 1)
 [ext_resource type="Texture2D" uid="uid://bj1cvdqt2ysqa" path="res://assets/sprites/end_score_background.png" id="5_bs8s3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3c3l"]

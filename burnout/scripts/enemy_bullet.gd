@@ -23,3 +23,7 @@ func _on_area_entered(area: Area2D):
 	if area.get_parent() is Player:
 		# TODO: deal damage to player
 		queue_free()
+
+func _on_body_entered(body: Node2D):
+	if body.is_in_group("Tree"):
+		queue_free()
