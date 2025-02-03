@@ -37,15 +37,15 @@ func update_highscore_display():
 	
 	var no_winner_text = "-"
 	if sorted_highscore_list.scores.size() >= 1:
-		first_place_label.text = "1. " + sorted_highscore_list.names[0] + ": " + str(sorted_highscore_list.scores[0])
+		first_place_label.text = sorted_highscore_list.names[0] + ": " + str(sorted_highscore_list.scores[0])
 	else:
 		first_place_label.text = no_winner_text
 	if sorted_highscore_list.scores.size() >= 2:
-		second_place_label.text = "2. " + sorted_highscore_list.names[1] + ": " + str(sorted_highscore_list.scores[1])
+		second_place_label.text = sorted_highscore_list.names[1] + ": " + str(sorted_highscore_list.scores[1])
 	else:
 		second_place_label.text = no_winner_text
 	if sorted_highscore_list.scores.size() >= 3:
-		third_place_label.text = "3. " + sorted_highscore_list.names[2] + ": " + str(sorted_highscore_list.scores[2])
+		third_place_label.text = sorted_highscore_list.names[2] + ": " + str(sorted_highscore_list.scores[2])
 	else:
 		third_place_label.text = no_winner_text
 	

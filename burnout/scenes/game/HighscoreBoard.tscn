@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfgfnqdo1p2vm"]
+[gd_scene load_steps=8 format=3 uid="uid://dfgfnqdo1p2vm"]
 
 [ext_resource type="Script" path="res://scripts/Scoreboard.gd" id="1_si6lw"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_mh3u6"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_owhxi"]
-[ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="3_wav6s"]
+[ext_resource type="Texture2D" uid="uid://cm238pej1sth" path="res://assets/sprites/golden_trophy.PNG" id="3_n5urq"]
+[ext_resource type="Texture2D" uid="uid://b10tofdraiyqv" path="res://assets/sprites/silver_trophy.PNG" id="4_1d6cm"]
+[ext_resource type="Texture2D" uid="uid://ex24kepjftm6" path="res://assets/sprites/bronze_trophy.PNG" id="5_gp4o6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wp5o"]
 bg_color = Color(0, 0, 0, 1)
@@ -76,13 +78,13 @@ theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_wav6s")
+texture = ExtResource("3_n5urq")
 
 [node name="FirstPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_fonts/normal_font = ExtResource("2_mh3u6")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_fonts/normal_font = ExtResource("2_owhxi")
+theme_override_font_sizes/normal_font_size = 120
 text = "First Place"
 fit_content = true
 scroll_active = false
@@ -94,13 +96,13 @@ theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("3_wav6s")
+texture = ExtResource("4_1d6cm")
 
 [node name="SecondPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_fonts/normal_font = ExtResource("2_mh3u6")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_fonts/normal_font = ExtResource("2_owhxi")
+theme_override_font_sizes/normal_font_size = 120
 text = "Second Place"
 fit_content = true
 scroll_active = false
@@ -112,13 +114,13 @@ theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("3_wav6s")
+texture = ExtResource("5_gp4o6")
 
 [node name="ThirdPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_fonts/normal_font = ExtResource("2_mh3u6")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_fonts/normal_font = ExtResource("2_owhxi")
+theme_override_font_sizes/normal_font_size = 120
 text = "Third Place"
 fit_content = true
 scroll_active = false
@@ -150,7 +152,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_owhxi")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 140
 text = "Play Again"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
@@ -158,7 +160,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_owhxi")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 140
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_pressed"]
