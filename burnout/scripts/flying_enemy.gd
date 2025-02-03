@@ -3,6 +3,7 @@ class_name FlyingEnemy
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_manager: HealthManager = $HealthManager
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var enemy_bullet_scene: PackedScene
 @export var movemenent_speed: float = 10
 @export var contact_damage: float = 1
@@ -41,6 +42,7 @@ func shoot():
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
+		animation_player.play("damage")
 		health_manager.receive_damage(bullet.damage)
 	if area.get_parent() is Stomp:
 		var stomp = area.get_parent() as Stomp

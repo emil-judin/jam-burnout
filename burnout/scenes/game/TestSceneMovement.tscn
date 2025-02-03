@@ -55,12 +55,12 @@ _data = {
 "death_animation": SubResource("Animation_lb0px")
 }
 
-[sub_resource type="Gradient" id="Gradient_5xfcu"]
+[sub_resource type="Gradient" id="Gradient_go7pp"]
 offsets = PackedFloat32Array(0, 0.446377)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jsi6g"]
-gradient = SubResource("Gradient_5xfcu")
+gradient = SubResource("Gradient_go7pp")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 

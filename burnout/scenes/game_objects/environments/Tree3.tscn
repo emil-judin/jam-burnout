@@ -15,7 +15,7 @@ z_index = 25
 position = Vector2(0, 121)
 texture = ExtResource("2_ytuw0")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Lower"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Lower" groups=["Tree"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lower/StaticBody2D"]
 polygon = PackedVector2Array(-110, -171, -39, -198, 61, -187, 86, -174, 78, -100, 81, -68, 118, 29, 170, 78, 196, 92, 194, 125, 177, 138, 127, 123, 26, 136, -46, 76, -80, 66, -80, 38, -60, 2, -87, -74, -125, -124)

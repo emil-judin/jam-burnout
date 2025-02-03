@@ -1,13 +1,33 @@
-[gd_scene load_steps=11 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=13 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
+[ext_resource type="Texture2D" uid="uid://oa18aeplv7fp" path="res://assets/sprites/ground_main_menu.png" id="2_hrh62"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="3_tov7v"]
 [ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_8h0iq"]
 [ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="4_fsa78"]
+[ext_resource type="Texture2D" uid="uid://bapaefji2i3rv" path="res://assets/sprites/swords_main_menu.png" id="3_wp363"]
+[ext_resource type="Texture2D" uid="uid://dcmtl2wwam3i7" path="res://assets/sprites/trees_main_menu.png" id="4_mspcl"]
+[ext_resource type="Texture2D" uid="uid://6vos22325hfc" path="res://assets/sprites/leaves1.png" id="5_ak3mt"]
+[ext_resource type="Texture2D" uid="uid://b1t5jg1pu14sm" path="res://assets/sprites/leaves2.png" id="6_v6gaq"]
+[ext_resource type="Texture2D" uid="uid://bwysvpc2mf5e0" path="res://assets/sprites/leaves3.png" id="7_7dhfw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6280"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_h81n7"]
+frames = 3
+frame_0/texture = ExtResource("5_ak3mt")
+frame_1/texture = ExtResource("6_v6gaq")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("7_7dhfw")
+frame_2/duration = 1.0
+
+[sub_resource type="Gradient" id="Gradient_5xfcu"]
+offsets = PackedFloat32Array(0, 0.814493)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w4qrd"]
+gradient = SubResource("Gradient_5xfcu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8uho"]
 texture = ExtResource("4_fsa78")
@@ -39,17 +59,31 @@ grow_vertical = 2
 script = ExtResource("1_xm6ub")
 intro_scene_path = "res://scenes/game/Intro.tscn"
 
-[node name="Panel" type="Panel" parent="."]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e6280")
+[node name="GroundBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_hrh62")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="SwordsMiddleGround" type="TextureRect" parent="GroundBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_wp363")
+
+[node name="TreesForeGround" type="TextureRect" parent="GroundBackground/SwordsMiddleGround"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_mspcl")
+
+[node name="AnimatedLeaves" type="TextureRect" parent="GroundBackground/SwordsMiddleGround/TreesForeGround"]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 1.0
+texture = SubResource("AnimatedTexture_h81n7")
+
+[node name="MarginContainer" type="MarginContainer" parent="GroundBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,15 +95,16 @@ theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -79,7 +114,7 @@ text = "BURN OUT"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -89,12 +124,12 @@ text = "The Last Flame
 "
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="GroundBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 2
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="StartButton" type="Button" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 25
@@ -111,7 +146,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_goyio")
 theme_override_styles/normal = SubResource("StyleBoxTexture_goyio")
 text = "Start"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="QuitButton" type="Button" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("3_tov7v")
@@ -126,5 +161,26 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_h708g")
 theme_override_styles/normal = SubResource("StyleBoxTexture_h708g")
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]
+[node name="SwordGlow" type="PointLight2D" parent="GroundBackground"]
+position = Vector2(1145, 1531)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+energy = 1.62
+texture = SubResource("GradientTexture2D_w4qrd")
+texture_scale = 18.0
+
+[node name="SwordGlow2" type="PointLight2D" parent="GroundBackground"]
+position = Vector2(2689, 971)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+energy = 1.62
+texture = SubResource("GradientTexture2D_w4qrd")
+texture_scale = 18.0
+
+[node name="SwordGlow3" type="PointLight2D" parent="GroundBackground"]
+position = Vector2(1493, 247)
+color = Color(1.92523e-06, 0.703576, 0.993748, 1)
+energy = 1.15
+texture = SubResource("GradientTexture2D_w4qrd")
+texture_scale = 18.0
+
+[connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
+[connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]

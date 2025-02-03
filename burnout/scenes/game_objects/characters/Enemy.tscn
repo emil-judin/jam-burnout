@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7yysxnjkqrgl"]
+[gd_scene load_steps=16 format=3 uid="uid://7yysxnjkqrgl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mkx8c"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="1_v6eyg"]
@@ -48,6 +48,43 @@ size = Vector2(82, 84)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo2u5"]
 size = Vector2(128, 265)
 
+[sub_resource type="Animation" id="Animation_wdjan"]
+resource_name = "damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.02, 0.02, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2wtql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofj0d"]
+_data = {
+"RESET": SubResource("Animation_2wtql"),
+"damage": SubResource("Animation_wdjan")
+}
+
 [node name="Enemy" type="CharacterBody2D"]
 z_index = -1
 script = ExtResource("1_mkx8c")
@@ -77,6 +114,11 @@ shape = SubResource("RectangleShape2D_jo2u5")
 [node name="HealthManager" parent="." instance=ExtResource("3_ndkax")]
 
 [node name="EnemyDamageSound" parent="." instance=ExtResource("5_k8xj4")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ofj0d")
+}
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="died" from="HealthManager" to="." method="die"]

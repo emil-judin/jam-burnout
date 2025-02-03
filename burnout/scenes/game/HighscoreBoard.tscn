@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Scoreboard.gd" id="1_si6lw"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_mh3u6"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_owhxi"]
+[ext_resource type="Texture2D" uid="uid://c88om1wdrj3i4" path="res://assets/sprites/background_highscore_board.png" id="2_yddj0"]
 [ext_resource type="Texture2D" uid="uid://cm238pej1sth" path="res://assets/sprites/golden_trophy.PNG" id="3_n5urq"]
 [ext_resource type="Texture2D" uid="uid://b10tofdraiyqv" path="res://assets/sprites/silver_trophy.PNG" id="4_1d6cm"]
 [ext_resource type="Texture2D" uid="uid://ex24kepjftm6" path="res://assets/sprites/bronze_trophy.PNG" id="5_gp4o6"]
@@ -40,26 +41,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_si6lw")
-first_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FirstPlaceLabel")
-second_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SecondPlaceLabel")
-third_place_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/ThirdPlaceLabel")
-highscore_display = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RichTextLabel")
-highscore_scroll_container = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer")
+first_place_label = NodePath("TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/FirstPlaceLabel")
+second_place_label = NodePath("TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SecondPlaceLabel")
+third_place_label = NodePath("TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/ThirdPlaceLabel")
+highscore_display = NodePath("TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RichTextLabel")
+highscore_scroll_container = NodePath("TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer")
 main_menu_path = "res://scenes/ui/menu/MainMenu.tscn"
 game_scene_path = "res://scenes/game/TestSceneMovement.tscn"
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6wp5o")
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_yddj0")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,10 +66,10 @@ grow_vertical = 2
 theme_override_constants/margin_top = 70
 theme_override_constants/margin_bottom = 70
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 
-[node name="HighscoreText" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HighscoreText" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_mh3u6")
@@ -80,29 +77,29 @@ theme_override_font_sizes/font_size = 180
 text = "Highscores"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 385
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_n5urq")
 
-[node name="FirstPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="FirstPlaceLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_owhxi")
@@ -112,15 +109,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("4_1d6cm")
 
-[node name="SecondPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="SecondPlaceLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_owhxi")
@@ -130,15 +127,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture = ExtResource("5_gp4o6")
 
-[node name="ThirdPlaceLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="ThirdPlaceLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_owhxi")
@@ -148,14 +145,14 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_owhxi")
 theme_override_font_sizes/normal_font_size = 80
@@ -165,11 +162,11 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="ReplayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ReplayButton" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -186,7 +183,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_l61cm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_l61cm")
 text = "Play Again"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -203,5 +200,5 @@ theme_override_styles/normal_mirrored = ExtResource("9_pf31g")
 theme_override_styles/normal = ExtResource("9_pf31g")
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

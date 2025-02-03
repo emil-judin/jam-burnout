@@ -9,6 +9,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6527"]
 bg_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://bj1cvdqt2ysqa" path="res://assets/sprites/end_score_background.png" id="5_bs8s3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3c3l"]
 texture = ExtResource("4_fjj6w")
@@ -28,44 +29,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vv31f")
-run_time_display = NodePath("Panel/MarginContainer/CenterContainer/RunTimeDisplay")
-name_input = NodePath("Panel/MarginContainer/VBoxContainer/NameInput")
+run_time_display = NodePath("TextureRect/MarginContainer/CenterContainer/RunTimeDisplay")
+name_input = NodePath("TextureRect/MarginContainer/VBoxContainer/NameInput")
 
-[node name="Panel" type="Panel" parent="."]
-z_index = -1
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("5_bs8s3")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_l6527")
+theme_override_constants/margin_top = 750
+theme_override_constants/margin_bottom = 150
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_bottom = 50
-
-[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 
-[node name="RunTimeDisplay" type="Label" parent="Panel/MarginContainer/CenterContainer"]
+[node name="RunTimeDisplay" type="Label" parent="TextureRect/MarginContainer/CenterContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_v8ytp")
-theme_override_font_sizes/font_size = 250
-text = "Your score: 10050"
+theme_override_font_sizes/font_size = 200
+text = "Your score: 10000"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 25
 
-[node name="NameInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="NameInput" type="LineEdit" parent="TextureRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_sf441")
@@ -73,7 +71,7 @@ theme_override_font_sizes/font_size = 160
 placeholder_text = "Enter your name"
 max_length = 16
 
-[node name="SaveButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="SaveButton" type="Button" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -94,5 +92,5 @@ text = "Save"
 stream = ExtResource("3_14r8a")
 volume_db = -10.0
 
-[connection signal="text_submitted" from="Panel/MarginContainer/VBoxContainer/NameInput" to="." method="_on_name_input_text_submitted"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="text_submitted" from="TextureRect/MarginContainer/VBoxContainer/NameInput" to="." method="_on_name_input_text_submitted"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

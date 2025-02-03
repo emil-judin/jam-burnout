@@ -4,6 +4,7 @@ class_name JumpingEnemy
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_manager: HealthManager = $HealthManager
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var jump_range: float = 2
 @export var jump_speed: float = 500
 @export var jump_height: float = 5
@@ -121,6 +122,7 @@ func jump(start: Vector2, top: Vector2, end: Vector2, t: float):
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
+		animation_player.play("damage")
 		health_manager.receive_damage(bullet.damage)
 	if area.get_parent() is Stomp:
 		die()
