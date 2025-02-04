@@ -114,6 +114,7 @@ shape = SubResource("RectangleShape2D_jo2u5")
 [node name="HealthManager" parent="." instance=ExtResource("3_ndkax")]
 
 [node name="EnemyDamageSound" parent="." instance=ExtResource("5_k8xj4")]
+bus = &"sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

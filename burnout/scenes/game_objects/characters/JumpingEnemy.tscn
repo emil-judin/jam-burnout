@@ -172,6 +172,8 @@ shape = SubResource("RectangleShape2D_jo2u5")
 [node name="EnemyHit" parent="." instance=ExtResource("6_jtab7")]
 
 [node name="SpiderJump" parent="." instance=ExtResource("7_bwuog")]
+volume_db = -18.0
+bus = &"sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

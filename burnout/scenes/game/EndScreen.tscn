@@ -89,6 +89,7 @@ text = "Save"
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_14r8a")
 volume_db = -10.0
+bus = &"music"
 
 [connection signal="text_submitted" from="TextureRect/MarginContainer/VBoxContainer/NameInput" to="." method="_on_name_input_text_submitted"]
 [connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
