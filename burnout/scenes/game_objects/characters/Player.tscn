@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cb2btogqfqo0m"]
+[gd_scene load_steps=70 format=3 uid="uid://cb2btogqfqo0m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v2l1p"]
 [ext_resource type="PackedScene" uid="uid://2b2p3j33lcgm" path="res://scenes/game_objects/Stomp.tscn" id="2_5fqtu"]
@@ -12,8 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://b3c1fygmwbqrh" path="res://assets/sprites/characters/side_walk_player.png" id="5_umysj"]
 [ext_resource type="Texture2D" uid="uid://cby5af721y2o8" path="res://assets/sprites/characters/stomp_complete.png" id="9_k568q"]
 [ext_resource type="PackedScene" uid="uid://bf86s6an87qy2" path="res://assets/sounds/Player/FeuerBallSound.tscn" id="9_rdf7u"]
-[ext_resource type="AudioStream" uid="uid://cwivfyi3q2o3d" path="res://assets/sounds/Player/Flame Attack 1.mp3" id="10_54tgm"]
 [ext_resource type="PackedScene" uid="uid://0h34wgotwiif" path="res://assets/sounds/Player/PlayerDamage.tscn" id="11_cw5dl"]
+[ext_resource type="AudioStream" uid="uid://cfjlwg4btxu6l" path="res://assets/sounds/Player/Ability 1.1.mp3" id="13_wyrrw"]
+[ext_resource type="AudioStream" uid="uid://oyfmd0rjf7gt" path="res://assets/sounds/Player/Feuer ausgelöscht 2.mp3" id="14_wu2yd"]
+[ext_resource type="AudioStream" uid="uid://ycxx7wyfp04t" path="res://assets/sounds/Player/flare.mp3" id="16_57wwg"]
+[ext_resource type="AudioStream" uid="uid://cg8nphifr0qbo" path="res://assets/sounds/Player/finalHit.mp3" id="17_40dbg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbrwi"]
 atlas = ExtResource("2_7xfs0")
@@ -458,10 +461,29 @@ libraries = {
 "": SubResource("AnimationLibrary_w0kyn")
 }
 
-[node name="FeuerBallSound" parent="." instance=ExtResource("9_rdf7u")]
-stream = ExtResource("10_54tgm")
-
 [node name="PlayerDamage" parent="." instance=ExtResource("11_cw5dl")]
+bus = &"sfx"
+
+[node name="FireFartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_wyrrw")
+bus = &"sfx"
+
+[node name="ExtinguishSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_wu2yd")
+volume_db = 12.0
+bus = &"sfx"
+
+[node name="FeuerBallSound" parent="." instance=ExtResource("9_rdf7u")]
+bus = &"sfx"
+
+[node name="FireCollectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_57wwg")
+volume_db = -4.0
+bus = &"sfx"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_40dbg")
+bus = &"sfx"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

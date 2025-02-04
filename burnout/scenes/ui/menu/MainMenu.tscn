@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=26 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://6vos22325hfc" path="res://assets/sprites/leaves1.png" id="5_ak3mt"]
 [ext_resource type="Texture2D" uid="uid://b1t5jg1pu14sm" path="res://assets/sprites/leaves2.png" id="6_v6gaq"]
 [ext_resource type="Texture2D" uid="uid://bwysvpc2mf5e0" path="res://assets/sprites/leaves3.png" id="7_7dhfw"]
+[ext_resource type="StyleBox" uid="uid://d30st0mo7ybvs" path="res://assets/sprites/button_style_box.tres" id="12_3f6u2"]
 [ext_resource type="AudioStream" uid="uid://mxexrpwppa61" path="res://assets/sounds/Background/background_music.MP3" id="12_5vegg"]
+[ext_resource type="Texture2D" uid="uid://hlqkfhwf6c55" path="res://assets/sprites/exit_icon.png" id="13_jd6dq"]
+[ext_resource type="PackedScene" uid="uid://cyyc0l22m8mmi" path="res://scenes/ui/menu/VolumeSlider.tscn" id="14_qc1d7"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_h81n7"]
 frames = 3
@@ -31,6 +34,11 @@ texture = ExtResource("4_8h0iq")
 texture_margin_left = 25.0
 texture_margin_right = 25.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sj8t5"]
+texture = ExtResource("4_fsa78")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a0bol"]
 texture = ExtResource("4_fsa78")
 texture_margin_left = 20.0
@@ -40,6 +48,14 @@ texture_margin_right = 30.0
 texture = ExtResource("4_8h0iq")
 texture_margin_left = 20.0
 texture_margin_right = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ooibb"]
+texture = ExtResource("4_8h0iq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r75cm"]
+content_margin_left = 200.0
+content_margin_top = 200.0
+texture = ExtResource("13_jd6dq")
 
 [sub_resource type="Gradient" id="Gradient_5xfcu"]
 offsets = PackedFloat32Array(0, 0.814493)
@@ -84,7 +100,7 @@ offset_right = 1.0
 offset_bottom = 1.0
 texture = SubResource("AnimatedTexture_h81n7")
 
-[node name="MarginContainer" type="MarginContainer" parent="GroundBackground"]
+[node name="MainMenuElements" type="MarginContainer" parent="GroundBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,16 +112,16 @@ theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MainMenuElements"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/MainMenuElements/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1220, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -117,7 +133,7 @@ text = " BURN OUT "
 fit_content = true
 autowrap_mode = 0
 
-[node name="Label" type="Label" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -128,14 +144,13 @@ text = "The Last Flame
 "
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="GroundBackground/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="GroundBackground/MainMenuElements/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
 
-[node name="StartButton" type="Button" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="StartButton" type="Button" parent="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_constants/outline_size = 25
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_tov7v")
@@ -150,7 +165,23 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_goyio")
 theme_override_styles/normal = SubResource("StyleBoxTexture_goyio")
 text = "Start"
 
-[node name="QuitButton" type="Button" parent="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="OptionsButton" type="Button" parent="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_tov7v")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sj8t5")
+theme_override_styles/normal_mirrored = ExtResource("12_3f6u2")
+theme_override_styles/normal = ExtResource("12_3f6u2")
+text = "Options
+"
+
+[node name="QuitButton" type="Button" parent="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("3_tov7v")
@@ -164,6 +195,120 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_a0bol")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_h708g")
 theme_override_styles/normal = SubResource("StyleBoxTexture_h708g")
 text = "Quit"
+
+[node name="OptionsMenu" type="MarginContainer" parent="GroundBackground"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1250
+theme_override_constants/margin_top = 550
+theme_override_constants/margin_right = 1250
+theme_override_constants/margin_bottom = 450
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/OptionsMenu"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="GroundBackground/OptionsMenu/VBoxContainer"]
+light_mask = 0
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ooibb")
+
+[node name="ExitButton" type="Button" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.914925
+anchor_top = 0.0827586
+anchor_right = 0.914925
+anchor_bottom = 0.0827586
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_r75cm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_r75cm")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.266379
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 400
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_tov7v")
+theme_override_font_sizes/font_size = 80
+text = "Main Volume"
+
+[node name="VolumeSlider" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer" instance=ExtResource("14_qc1d7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+value = 1.0
+bus_name = "Master"
+
+[node name="Label2" type="Label" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_tov7v")
+theme_override_font_sizes/font_size = 80
+text = "Music"
+
+[node name="VolumeSlider2" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer" instance=ExtResource("14_qc1d7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+value = 1.0
+bus_name = "music"
+
+[node name="Label3" type="Label" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_tov7v")
+theme_override_font_sizes/font_size = 80
+text = "Sound Effects"
+
+[node name="VolumeSlider3" parent="GroundBackground/OptionsMenu/VBoxContainer/Panel/MarginContainer/VBoxContainer" instance=ExtResource("14_qc1d7")]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+value = 1.0
+bus_name = "sfx"
 
 [node name="SwordGlow" type="PointLight2D" parent="GroundBackground"]
 position = Vector2(1145, 1531)
@@ -190,6 +335,9 @@ texture_scale = 18.0
 stream = ExtResource("12_5vegg")
 volume_db = -10.0
 autoplay = true
+bus = &"music"
 
-[connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
-[connection signal="pressed" from="GroundBackground/MarginContainer/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]
+[connection signal="pressed" from="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2/StartButton" to="." method="_on_start_button_clicked"]
+[connection signal="pressed" from="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="GroundBackground/MainMenuElements/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_clicked"]
+[connection signal="pressed" from="GroundBackground/OptionsMenu/VBoxContainer/Panel/ExitButton" to="." method="_on_exit_button_pressed"]
