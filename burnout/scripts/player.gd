@@ -3,6 +3,7 @@ class_name Player
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var damage_animation: AnimationPlayer = $DamageAnimation
 @onready var hit_box: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var gun: Gun = $Gun
 @export var ui: UI
@@ -120,7 +121,12 @@ func _physics_process(delta):
 		add_heatlth_time(10)
 	if Input.is_action_just_pressed("-"):
 		subtract_health_time(10)
-	
+
+
+func damage_feedback():
+	$PlayerDamage.play()
+	damage_animation.play("damage")
+
 func time_item_collected(time_value):
 	add_heatlth_time(time_value)
 
@@ -137,16 +143,16 @@ func _on_area_entered(area: Area2D):
 		# Deal contact damage
 		#print("decreasing timer by " + str(parent.contact_damage))
 		subtract_health_time(parent.contact_damage)
-		$PlayerDamage.play()
+		damage_feedback()
 	if parent is EnvironmentDamage:
 		is_in_puddle = true
-		$PlayerDamage.play()
+		damage_feedback()
 	if parent is EnemyBullet:
 		# Deal bullet damage
 		var enemy_bullet = parent as EnemyBullet
 		#print("decreasing timer by " + str(enemy_bullet.damage))
 		subtract_health_time(enemy_bullet.damage)
-		$PlayerDamage.play()
+		damage_feedback()
 
 func _on_area_exited(area: Area2D):
 	var parent = area.get_parent()

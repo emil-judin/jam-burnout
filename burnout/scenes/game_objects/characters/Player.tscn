@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cb2btogqfqo0m"]
+[gd_scene load_steps=73 format=3 uid="uid://cb2btogqfqo0m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v2l1p"]
 [ext_resource type="PackedScene" uid="uid://2b2p3j33lcgm" path="res://scenes/game_objects/Stomp.tscn" id="2_5fqtu"]
@@ -423,6 +423,43 @@ _data = {
 "death": SubResource("Animation_13k2i")
 }
 
+[sub_resource type="Animation" id="Animation_2wtql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wdjan"]
+resource_name = "damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.02, 0.02, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofj0d"]
+_data = {
+"RESET": SubResource("Animation_2wtql"),
+"damage": SubResource("Animation_wdjan")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v2l1p")
 stomp_scene = ExtResource("2_5fqtu")
@@ -459,6 +496,11 @@ texture_scale = 18.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_w0kyn")
+}
+
+[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ofj0d")
 }
 
 [node name="PlayerDamage" parent="." instance=ExtResource("11_cw5dl")]
