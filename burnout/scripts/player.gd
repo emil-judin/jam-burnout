@@ -7,9 +7,9 @@ class_name Player
 @onready var gun: Gun = $Gun
 @export var ui: UI
 @export var stomp_scene: PackedScene
-@export var movement_speed: float = 400
-@export var max_health_time: float = 300.0
-@export var start_health_time: float = 60  # seconds
+@export var movement_speed: float = 600
+@export var max_health_time: float = 120
+@export var start_health_time: float = 90  # seconds
 @export var lingering_timeout_enemies = 1
 @export var camera: Camera2D
 const time_frame_length: int = 5
