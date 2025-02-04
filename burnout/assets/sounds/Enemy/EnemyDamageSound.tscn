@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://88peymj2jp4v"]
 
-[ext_resource type="AudioStream" uid="uid://dgdbgwhf8jbod" path="res://assets/sounds/Enemy/drop03-82909.mp3" id="1_vlv40"]
+[ext_resource type="AudioStream" uid="uid://dgdbgwhf8jbod" path="res://assets/sounds/drop03-82909.mp3" id="1_vlv40"]
 
 [node name="EnemyHit" type="AudioStreamPlayer"]
 stream = ExtResource("1_vlv40")
-volume_db = -15.0
-bus = &"sfx"
+volume_db = -12.0

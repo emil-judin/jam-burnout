@@ -28,11 +28,10 @@ func _on_area_entered(area: Area2D):
 		var bullet = area.get_parent() as FireBullet
 		animation_player.play("damage")
 		health_manager.receive_damage(bullet.damage)
-		$EnemyDamageSound.play()
 	if area.get_parent() is Stomp:
 		var stomp = area.get_parent() as Stomp
 		health_manager.receive_damage(stomp.damage)
-		
+		$EnemyDamageSound.play()
 
 func die():
 	UI.current_score += points

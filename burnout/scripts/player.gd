@@ -31,8 +31,7 @@ func _ready():
 	health_timer.connect("timeout", func(): _on_timer_timeout())
 	ui.initialize_health_ui(start_health_time, max_health_time)
 	health_timer.start()
-
-	#$FeuerBallSound.play()
+	$FeuerBallSound.play()
 
 func _input(event):
 	if event.is_action_pressed("stomp") && current_stomp_instance == null:
@@ -42,9 +41,7 @@ func _input(event):
 		add_child(current_stomp_instance)
 		current_stomp_instance.activate(self)
 		subtract_health_time(current_stomp_instance.cost)
-		await get_tree().create_timer(0.5).timeout
-		$FireFartSound.play()
-		
+
 func _process(delta):
 	survived_timer += delta
 	
@@ -57,8 +54,6 @@ func _process(delta):
 		ui.update_progress_bar(health_timer.time_left)
 		
 	if is_in_puddle:
-		if !$ExtinguishSound.playing:
-			$ExtinguishSound.play()
 		if puddle_lingering_timer >= puddle_lingering_timeout:
 			subtract_health_time(0.1)
 			puddle_lingering_timer = 0
@@ -83,7 +78,6 @@ func _on_timer_timeout():
 		ui.update_progress_bar(0)
 		is_dead = true
 		remove_child(gun)
-		$DeathSound.play()
 		animation_player.play("death")
 		camera.do_death_animation()
 		await get_tree().create_timer(5).timeout
@@ -131,13 +125,10 @@ func _on_area_entered(area: Area2D):
 		#print("inceasing timer by " + str(time_item.time_value))
 		time_item_collected(time_item.time_value)
 		time_item.collect()
-		$FireCollectSound.play()
-		
 	if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
 		# Deal contact damage
 		#print("decreasing timer by " + str(parent.contact_damage))
 		subtract_health_time(parent.contact_damage)
-		$PlayerDamage.play()
 	if parent is EnvironmentDamage:
 		is_in_puddle = true
 		$PlayerDamage.play()
@@ -146,7 +137,6 @@ func _on_area_entered(area: Area2D):
 		var enemy_bullet = parent as EnemyBullet
 		#print("decreasing timer by " + str(enemy_bullet.damage))
 		subtract_health_time(enemy_bullet.damage)
-		$PlayerDamage.play()
 
 func _on_area_exited(area: Area2D):
 	var parent = area.get_parent()

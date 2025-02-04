@@ -2,6 +2,6 @@
 
 [ext_resource type="AudioStream" uid="uid://tdqknj4km2mq" path="res://assets/sounds/Enemy/SpiderJumpAudio.wav" id="1_co2qg"]
 
-[node name="SpiderJump" type="AudioStreamPlayer2D"]
+[node name="SpiderJump" type="AudioStreamPlayer"]
 stream = ExtResource("1_co2qg")
 volume_db = -23.0
