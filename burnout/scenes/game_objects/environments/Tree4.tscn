@@ -18,4 +18,4 @@ texture = ExtResource("2_mtq8q")
 [node name="StaticBody2D" type="StaticBody2D" parent="Lower" groups=["Tree"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lower/StaticBody2D"]
-polygon = PackedVector2Array(-164, -167, -78, -191, 25, -181, 65, -169, 5, -90, 17, 67, 25, 90, 13, 107, -4, 111, -24, 115, -77, 89, -256, 114, -289, 106, -286, 85, -275, 60, -256, -16, -216, -62, -174, -96)
+polygon = PackedVector2Array(-164, -174, -162, -205, -89, -220, 14, -217, 92, -198, 66, -171, 5, -90, 17, 67, 25, 90, 13, 107, -4, 111, -24, 115, -77, 89, -256, 114, -289, 106, -286, 85, -275, 60, -256, -16, -216, -62, -174, -96)
