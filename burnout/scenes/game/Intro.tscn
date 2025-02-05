@@ -49,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x0njm")
-main_scene_path = "res://scenes/game/TestSceneMovement.tscn"
+tutorial_scene_path = "res://scenes/game/tutorial.tscn"
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 1

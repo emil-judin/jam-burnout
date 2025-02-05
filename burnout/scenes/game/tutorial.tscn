@@ -1,0 +1,214 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4p735tkh3c5r"]
+
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_34oxo"]
+[ext_resource type="Texture2D" uid="uid://oa18aeplv7fp" path="res://assets/sprites/ground_main_menu.png" id="2_2a2ah"]
+[ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_26c3i"]
+[ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="3_7v31h"]
+[ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_7sq8s"]
+[ext_resource type="Texture2D" uid="uid://cf3n4ei6gy5nl" path="res://assets/sprites/custom_cursor.png" id="5_8766e"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_pgv30"]
+frames = 3
+frame_1/duration = 1.0
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_hr8kn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edw3h"]
+texture = ExtResource("3_7v31h")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_giaaj"]
+texture = ExtResource("4_7sq8s")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqpft"]
+texture = ExtResource("4_7sq8s")
+texture_margin_left = 25.0
+texture_margin_right = 25.0
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34oxo")
+main_scene_path = "res://scenes/game/TestSceneMovement.tscn"
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2a2ah")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "You are the last flame fighting against the dark 
+Not only do you have to fight them, but time itself.
+Collect fire to stay alive and fight the dark using your abilities. 
+Stay Alive as long as possible."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="WASD" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WASD"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "Use WASD to move"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WASD"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WASD/CenterContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_pgv30")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Aim" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Aim"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "Aim with your mouse
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Aim"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Aim/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("5_8766e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="FireFart" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "Press E to use Fire Fart
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_hr8kn")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Flames" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "Collect Flames to Survive"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_hr8kn")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="StartButton" type="Button" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 240
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_edw3h")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_giaaj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_iqpft")
+text = "Start"
+
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
