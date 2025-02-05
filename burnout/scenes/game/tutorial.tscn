@@ -1,18 +1,63 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4p735tkh3c5r"]
+[gd_scene load_steps=19 format=3 uid="uid://b4p735tkh3c5r"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_34oxo"]
 [ext_resource type="Texture2D" uid="uid://oa18aeplv7fp" path="res://assets/sprites/ground_main_menu.png" id="2_2a2ah"]
 [ext_resource type="FontFile" uid="uid://dkm8unjw64txc" path="res://assets/fonts/morning_breeze/MorningBreeze-Light.otf" id="2_26c3i"]
 [ext_resource type="Texture2D" uid="uid://boe7m2mkqlwyl" path="res://assets/sprites/Button_hover.png" id="3_7v31h"]
+[ext_resource type="PackedScene" uid="uid://c0yf1yxninltn" path="res://scenes/game_objects/characters/PlayerAnimatedSprite.tscn" id="4_5brmg"]
 [ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_7sq8s"]
 [ext_resource type="Texture2D" uid="uid://cf3n4ei6gy5nl" path="res://assets/sprites/custom_cursor.png" id="5_8766e"]
+[ext_resource type="Texture2D" uid="uid://dq8lhm0v1o0tw" path="res://assets/sprites/environments/fire_glow.png" id="5_ixcw5"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_pgv30"]
-frames = 3
-frame_1/duration = 1.0
-frame_2/duration = 1.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxjw7"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(0, 0, 281, 418)
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_hr8kn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwv5i"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(281, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kufm2"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(562, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0wkl"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(0, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qscf"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(281, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60hyw"]
+atlas = ExtResource("5_ixcw5")
+region = Rect2(562, 418, 281, 418)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpt3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxjw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwv5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kufm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0wkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qscf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60hyw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edw3h"]
 texture = ExtResource("3_7v31h")
@@ -110,9 +155,14 @@ size_flags_vertical = 4
 [node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WASD/CenterContainer2"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
-texture = SubResource("AnimatedTexture_pgv30")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/WASD/CenterContainer2/TextureRect" instance=ExtResource("4_5brmg")]
+position = Vector2(149, 118)
+animation = &"front_walk"
+autoplay = "front_walk"
+frame_progress = 0.377991
 
 [node name="Aim" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -164,7 +214,6 @@ size_flags_vertical = 4
 [node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart/CenterContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
-texture = SubResource("AnimatedTexture_hr8kn")
 expand_mode = 2
 stretch_mode = 4
 
@@ -190,9 +239,14 @@ size_flags_vertical = 4
 [node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames/CenterContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
-texture = SubResource("AnimatedTexture_hr8kn")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
+position = Vector2(362, 173)
+sprite_frames = SubResource("SpriteFrames_vpt3a")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="StartButton" type="Button" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
