@@ -1,8 +1,10 @@
 extends Node
 
 @onready var items: Node = $Items
-@export var item_scene: PackedScene
+@export var regular_flame_scene: PackedScene
+@export var blue_flame_scene: PackedScene
 @export var spawn_frequency: float = 5
+@export var blue_flame_probability: float = 0.1
 @export var item_spawn_points: Array[Node2D]
 @export var max_items = 1
 var spawn_timer: float = 0;
@@ -31,6 +33,11 @@ func spawn_item():
 	var random_index = randi_range(0, item_spawn_points.size() - 1)
 	var random_spawn_point = item_spawn_points[random_index] as Node2D
 	
+	var random_number = RandomNumberGenerator.new().randf_range(0, 1)
+	var item_scene = regular_flame_scene
+	if random_number <= blue_flame_probability:
+		item_scene = blue_flame_scene
+		
 	var item_instance = item_scene.instantiate() as TimeItem
 	items.add_child(item_instance)
 	item_instance.global_position = random_spawn_point.global_position

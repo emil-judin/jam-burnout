@@ -20,6 +20,9 @@ var is_waiting = true
 var jump_progress = 0
 var waiting_timer = 0
 
+func _ready():
+	animation_player.play("spawn")
+
 func _physics_process(delta):
 	if is_chasing && target != null:
 		if is_waiting:
@@ -122,12 +125,14 @@ func jump(start: Vector2, top: Vector2, end: Vector2, t: float):
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
-		animation_player.play("damage")
+		if animation_player.current_animation != "spawn":
+			animation_player.play("damage")
 		health_manager.receive_damage(bullet.damage)
 		$EnemyHit.play()
-	if area.get_parent() is Stomp:
+
+func _on_body_entererd(body: Node2D):
+	if body.get_parent() is Stomp:
 		die()
-		
 
 func die():
 	UI.current_score += points

@@ -13,6 +13,9 @@ var target: Node2D
 var is_chasing = false
 var shoot_timer: float
 
+func _ready():
+	animation_player.play("spawn")
+
 func _process(delta):
 	animated_sprite.play("walk")
 	if shoot_timer >= shoot_frequency:
@@ -42,14 +45,17 @@ func shoot():
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
 		var bullet = area.get_parent() as FireBullet
-		animation_player.play("damage")
+		if animation_player.current_animation != "spawn":
+			animation_player.play("damage")
 		health_manager.receive_damage(bullet.damage)
 		$EnemyHit.play()
-	if area.get_parent() is Stomp:
-		var stomp = area.get_parent() as Stomp
-		health_manager.receive_damage(stomp.damage)
 			
-	
+func _on_body_entererd(body: Node2D):
+	if body.get_parent() is Stomp:
+		if animation_player.current_animation != "spawn":
+			animation_player.play("damage")
+		var stomp = body.get_parent() as Stomp
+		health_manager.receive_damage(stomp.damage)
 
 func die():
 	UI.current_score += points

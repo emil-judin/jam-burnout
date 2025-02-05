@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+signal received_damage(damage: float)
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_animation: AnimationPlayer = $DamageAnimation
@@ -13,17 +14,21 @@ class_name Player
 @export var start_health_time: float = 90  # seconds
 @export var lingering_timeout_enemies = 1
 @export var camera: Camera2D
+@export var fart_cooldown: float = 5
 const time_frame_length: int = 5
 var health_timer: Timer = null
 var survived_timer: float = 0
+var fart_timer: float = 0
 var is_in_puddle = false
 var puddle_lingering_timeout = 0.2
 var puddle_lingering_timer = 0
 var current_stomp_instance = null
 var is_dead: bool = false
 var is_stomping: bool = false
+var activated_stomp_hitbox: bool = false
 
 func _ready():
+	fart_timer = fart_cooldown
 	survived_timer = 0
 	
 	health_timer = Timer.new()
@@ -36,18 +41,36 @@ func _ready():
 	#$FeuerBallSound.play()
 
 func _input(event):
-	if event.is_action_pressed("stomp") && current_stomp_instance == null:
+	if event.is_action_pressed("stomp") && current_stomp_instance == null && fart_timer >= fart_cooldown:
+		current_stomp_instance = null
+		fart_timer = 0
 		is_stomping = true
 		animated_sprite.play("stomp_complete")
-		current_stomp_instance = stomp_scene.instantiate() as Stomp
-		add_child(current_stomp_instance)
-		current_stomp_instance.activate(self)
-		subtract_health_time(current_stomp_instance.cost)
-		await get_tree().create_timer(0.5).timeout
-		$FireFartSound.play()
 		
+
+func activate_fart_hitbox():
+	current_stomp_instance = null
+	current_stomp_instance = stomp_scene.instantiate() as Stomp
+	await get_tree().process_frame
+	current_stomp_instance.stomp_finished.connect(finish_stomp)
+	add_child(current_stomp_instance)
+	current_stomp_instance.activate(self)
+	$FireFartSound.play()
+	
+func finish_stomp():
+	is_stomping = false
+	activated_stomp_hitbox = false
+	remove_child(current_stomp_instance)
+	current_stomp_instance = null
+
 func _process(delta):
+	if animated_sprite.animation == "stomp_complete" and animated_sprite.frame == 7 && !activated_stomp_hitbox:
+		activate_fart_hitbox()
+		activated_stomp_hitbox = true
+	
 	survived_timer += delta
+	if fart_timer <= fart_cooldown:
+		fart_timer += delta
 	
 	if !health_timer.is_stopped():
 		var time_frames_survived = int(survived_timer / time_frame_length)
@@ -92,8 +115,6 @@ func _on_timer_timeout():
 
 func _physics_process(delta):
 	if is_stomping:
-		if !animated_sprite.is_playing():
-			is_stomping = false
 		return
 	
 	if is_dead:
@@ -138,21 +159,25 @@ func _on_area_entered(area: Area2D):
 		time_item_collected(time_item.time_value)
 		time_item.collect()
 		$FireCollectSound.play()
-		
-	if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
-		# Deal contact damage
-		#print("decreasing timer by " + str(parent.contact_damage))
-		subtract_health_time(parent.contact_damage)
-		damage_feedback()
-	if parent is EnvironmentDamage:
-		is_in_puddle = true
-		damage_feedback()
-	if parent is EnemyBullet:
-		# Deal bullet damage
-		var enemy_bullet = parent as EnemyBullet
-		#print("decreasing timer by " + str(enemy_bullet.damage))
-		subtract_health_time(enemy_bullet.damage)
-		damage_feedback()
+	
+	# no damage during stomp
+	if !is_stomping:
+		if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
+			# Deal contact damage
+			#print("decreasing timer by " + str(parent.contact_damage))
+			subtract_health_time(parent.contact_damage)
+			damage_feedback()
+			received_damage.emit(parent.contact_damage)
+		if parent is EnvironmentDamage:
+			is_in_puddle = true
+			damage_feedback()
+		if parent is EnemyBullet:
+			# Deal bullet damage
+			var enemy_bullet = parent as EnemyBullet
+			#print("decreasing timer by " + str(enemy_bullet.damage))
+			subtract_health_time(enemy_bullet.damage)
+			received_damage.emit(enemy_bullet.damage)
+			damage_feedback()
 
 func _on_area_exited(area: Area2D):
 	var parent = area.get_parent()
