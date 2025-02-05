@@ -146,6 +146,8 @@ libraries = {
 [node name="Player" parent="." node_paths=PackedStringArray("ui", "camera") instance=ExtResource("2_mknsx")]
 position = Vector2(5, -60)
 ui = NodePath("../UI")
+fart_cooldown = 5.0
+fart_invincibility = 0.5
 camera = NodePath("../Camera2D")
 
 [node name="Ground" type="Sprite2D" parent="."]

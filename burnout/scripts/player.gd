@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal received_damage(damage: float)
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_animation: AnimationPlayer = $DamageAnimation
@@ -12,13 +13,19 @@ signal received_damage(damage: float)
 @export var movement_speed: float = 600
 @export var max_health_time: float = 120
 @export var start_health_time: float = 90  # seconds
+@export var fart_cooldown: float = 5
+@export var fart_invincibility: float = 1
 @export var lingering_timeout_enemies = 1
 @export var camera: Camera2D
-@export var fart_cooldown: float = 5
+
 const time_frame_length: int = 5
+
 var health_timer: Timer = null
 var survived_timer: float = 0
-var fart_timer: float = 0
+var fart_timer: Timer
+var fart_useable: bool = true
+var invincibility_timer: Timer
+var invincible: bool = false
 var is_in_puddle = false
 var puddle_lingering_timeout = 0.2
 var puddle_lingering_timer = 0
@@ -28,7 +35,6 @@ var is_stomping: bool = false
 var activated_stomp_hitbox: bool = false
 
 func _ready():
-	fart_timer = fart_cooldown
 	survived_timer = 0
 	
 	health_timer = Timer.new()
@@ -37,16 +43,22 @@ func _ready():
 	health_timer.connect("timeout", func(): _on_timer_timeout())
 	ui.initialize_health_ui(start_health_time, max_health_time)
 	health_timer.start()
+	fart_timer = Timer.new()
+	add_child(fart_timer)
+	fart_timer.connect("timeout", func(): _on_fart_timer_timeout())
+	invincibility_timer = Timer.new()
+	add_child(invincibility_timer)
+	invincibility_timer.connect("timeout", func(): _on_invicibility_timer_timeout())
 
-	#$FeuerBallSound.play()
 
 func _input(event):
-	if event.is_action_pressed("stomp") && current_stomp_instance == null && fart_timer >= fart_cooldown:
+	if event.is_action_pressed("stomp") && current_stomp_instance == null && fart_useable :
 		current_stomp_instance = null
-		fart_timer = 0
+		fart_useable = false
+		fart_timer.start(fart_cooldown)
+		invincible = true
 		is_stomping = true
 		animated_sprite.play("stomp_complete")
-		
 
 func activate_fart_hitbox():
 	current_stomp_instance = null
@@ -62,6 +74,16 @@ func finish_stomp():
 	activated_stomp_hitbox = false
 	remove_child(current_stomp_instance)
 	current_stomp_instance = null
+	invincibility_timer.start(fart_invincibility)
+
+func _on_fart_timer_timeout():
+	fart_timer.stop()
+	fart_useable = true
+
+func _on_invicibility_timer_timeout():
+	invincibility_timer.stop()
+	invincible = false
+
 
 func _process(delta):
 	if animated_sprite.animation == "stomp_complete" and animated_sprite.frame == 7 && !activated_stomp_hitbox:
@@ -69,8 +91,6 @@ func _process(delta):
 		activated_stomp_hitbox = true
 	
 	survived_timer += delta
-	if fart_timer <= fart_cooldown:
-		fart_timer += delta
 	
 	if !health_timer.is_stopped():
 		var time_frames_survived = int(survived_timer / time_frame_length)
@@ -81,7 +101,7 @@ func _process(delta):
 		ui.update_progress_bar(health_timer.time_left)
 		
 	if is_in_puddle:
-		if !$ExtinguishSound.playing:
+		if not $ExtinguishSound.playing:
 			$ExtinguishSound.play()
 		if puddle_lingering_timer >= puddle_lingering_timeout:
 			subtract_health_time(0.1)
@@ -160,8 +180,8 @@ func _on_area_entered(area: Area2D):
 		time_item.collect()
 		$FireCollectSound.play()
 	
-	# no damage during stomp
-	if !is_stomping:
+	# no damage during and after stomp for a certain time (fart_invinciblity)
+	if !invincible:
 		if parent is Enemy || parent is JumpingEnemy || parent is FlyingEnemy:
 			# Deal contact damage
 			#print("decreasing timer by " + str(parent.contact_damage))
