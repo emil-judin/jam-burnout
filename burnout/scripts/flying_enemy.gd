@@ -37,7 +37,7 @@ func shoot():
 	enemy_bullet_instance.direction = target.global_position - global_position
 	enemy_bullet_instance.global_position = global_position
 	get_parent().add_child(enemy_bullet_instance)
-	$FlyEnemyShoot.play()
+	#$FlyEnemyShoot.play()
 
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
