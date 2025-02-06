@@ -171,6 +171,9 @@ _data = {
 
 [node name="JumpingEnemy" type="CharacterBody2D"]
 modulate = Color(1, 1, 1, 0)
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_v51be")
 jump_range = 500.0
 jump_speed = 0.5
@@ -209,6 +212,9 @@ bus = &"sfx"
 libraries = {
 "": SubResource("AnimationLibrary_ofj0d")
 }
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entererd"]

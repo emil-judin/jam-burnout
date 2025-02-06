@@ -1,11 +1,12 @@
 extends CharacterBody2D
 class_name FlyingEnemy
 
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_manager: HealthManager = $HealthManager
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var enemy_bullet_scene: PackedScene
-@export var movemenent_speed: float = 10
+@export var movemenent_speed: float = 10000
 @export var contact_damage: float = 1
 @export var shoot_frequency = 1
 @export var points: int = 50
@@ -27,8 +28,15 @@ func _process(delta):
 
 func _physics_process(delta):
 	if is_chasing && target != null:
-		var direction = target.global_position - global_position
-		velocity = direction * movemenent_speed * delta
+		navigation_agent_2d.target_position = target.global_position
+		
+		if navigation_agent_2d.is_navigation_finished():
+			return
+		
+		var current_position = global_position
+		var next_position = navigation_agent_2d.get_next_path_position()
+		velocity = current_position.direction_to(next_position) * movemenent_speed * delta
+		
 		move_and_slide()
 		animated_sprite.flip_h = velocity.x > 0
 	
