@@ -13,10 +13,6 @@ func _process(delta):
 		shoot()
 		auto_shoot_timer = 0
 
-func _input(event):
-	if event.is_action_pressed("shoot") && !auto_shoot:
-		shoot()
-
 
 func shoot():
 	# instantiate bullet
