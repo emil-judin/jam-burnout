@@ -5,25 +5,21 @@ class_name Enemy
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var health_manager: HealthManager = $HealthManager
-@export var movemenent_speed: float = 500
+@export var movemenent_speed: float = 10000
 @export var contact_damage: float = 1
 @export var points: int = 50
 var target: Node2D
 var is_chasing = false
-#var current_position
+
 
 func _ready():
 	animation_player.play("spawn")
-	#current_position = global_position
+
 
 func _process(delta):
 	animated_sprite.play("walk")
 
 func _physics_process(delta):
-	
-	#var last_position = current_position
-	#current_position = global_position
-	
 	if is_chasing && target != null:
 		
 		navigation_agent_2d.target_position = target.global_position
@@ -33,21 +29,15 @@ func _physics_process(delta):
 		
 		var current_position = global_position
 		var next_position = navigation_agent_2d.get_next_path_position()
-		velocity = current_position.direction_to(next_position) * movemenent_speed
-		#var direction = target.global_position - global_position
-		#velocity = direction * movemenent_speed * delta
+		velocity = current_position.direction_to(next_position) * movemenent_speed * delta
+
 		move_and_slide()
 		animated_sprite.flip_h = velocity.x < 0
-		
-		#if last_position == current_position:
-			#navigation_fix()
-	
+
+
 func start_chase():
 	is_chasing = true
 
-#func navigation_fix():
-	#is_chasing = false
-	#global_position.x
 
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is FireBullet:
