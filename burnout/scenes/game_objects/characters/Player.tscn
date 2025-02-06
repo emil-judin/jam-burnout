@@ -465,6 +465,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_v2l1p")
 stomp_scene = ExtResource("2_5fqtu")
 fart_cooldown = 0.0

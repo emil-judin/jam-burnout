@@ -117,6 +117,7 @@ _data = {
 [node name="Enemy" type="CharacterBody2D"]
 modulate = Color(0, 0, 0, 0)
 z_index = -1
+collision_mask = 3
 script = ExtResource("1_mkx8c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -150,6 +151,8 @@ shape = SubResource("RectangleShape2D_jo2u5")
 libraries = {
 "": SubResource("AnimationLibrary_ofj0d")
 }
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entererd"]

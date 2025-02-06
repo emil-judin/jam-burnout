@@ -118,6 +118,7 @@ _data = {
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 modulate = Color(1, 1, 1, 0)
+collision_mask = 3
 script = ExtResource("1_y1bx2")
 enemy_bullet_scene = ExtResource("2_rl05j")
 

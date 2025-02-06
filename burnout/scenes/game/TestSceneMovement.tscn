@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxjavkjyqwoeh"]
+[gd_scene load_steps=32 format=3 uid="uid://bxjavkjyqwoeh"]
 
 [ext_resource type="Script" path="res://scenes/game/test_scene_movement.gd" id="1_6tg80"]
 [ext_resource type="Script" path="res://scripts/vignette.gd" id="2_g1two"]
@@ -109,6 +109,11 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh35t"]
 size = Vector2(7861, 172)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0pljn"]
+vertices = PackedVector2Array(3809, 2109.02, -3803.01, 2125.97, -3807.99, -2130, 3810, -2130)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3818, -2140, 3820, -2140, 3819, 2119, -3813, 2136)])
 
 [node name="TestSceneMovement" type="Node2D"]
 script = ExtResource("1_6tg80")
@@ -343,7 +348,7 @@ rotation = -3.14159
 scale = Vector2(1.24, -1.24)
 
 [node name="SwordGlow" type="PointLight2D" parent="Environment"]
-position = Vector2(1245, -549)
+position = Vector2(1237, -554)
 color = Color(1.92523e-06, 0.703576, 0.993748, 1)
 texture = SubResource("GradientTexture2D_jsi6g")
 texture_scale = 18.0
@@ -367,6 +372,7 @@ texture = SubResource("GradientTexture2D_jsi6g")
 texture_scale = 18.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
 position = Vector2(6, -2242)
@@ -388,7 +394,10 @@ shape = SubResource("RectangleShape2D_hh35t")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 position = Vector2(-90, 110)
-polygon = PackedVector2Array(-1019, -1605, -1169, -1508, -1250, -1361, -1411, -1226, -1434, -1007, -1295, -826, -1066, -770, -860, -851, -526, -873, -52, -971, 330, -1045, 514, -1221, 422, -1351, 68, -1325, -236, -1451, -478, -1487, -669, -1596, -814, -1574)
+polygon = PackedVector2Array(-1019, -1605, -1131, -1566, -1287, -1362, -1411, -1226, -1434, -1007, -1295, -826, -1067, -797, -860, -851, -517, -867, -63, -921, 335, -1010, 566, -1224, 444, -1362, 65, -1344, -189, -1454, -312, -1512, -574, -1604, -812, -1586)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0pljn")
 
 [connection signal="received_damage" from="Player" to="VignetteLayer" method="play_vignette_damage_animation"]
 [connection signal="received_damage" from="Player" to="Camera2D" method="add_trauma"]
