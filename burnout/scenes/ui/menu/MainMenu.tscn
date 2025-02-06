@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://fue3k8fdh75p"]
+[gd_scene load_steps=39 format=3 uid="uid://fue3k8fdh75p"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_xm6ub"]
 [ext_resource type="FontFile" uid="uid://buqhriudoc8ou" path="res://assets/fonts/Lacquer-Regular.ttf" id="2_357cy"]
@@ -11,10 +11,22 @@
 [ext_resource type="Texture2D" uid="uid://6vos22325hfc" path="res://assets/sprites/leaves1.png" id="5_ak3mt"]
 [ext_resource type="Texture2D" uid="uid://b1t5jg1pu14sm" path="res://assets/sprites/leaves2.png" id="6_v6gaq"]
 [ext_resource type="Texture2D" uid="uid://bwysvpc2mf5e0" path="res://assets/sprites/leaves3.png" id="7_7dhfw"]
+[ext_resource type="Texture2D" uid="uid://bef0d81bbxkc5" path="res://assets/sprites/falling_leaves/falling_1.png" id="8_5mgtb"]
+[ext_resource type="Texture2D" uid="uid://dxi5xiae1xsfw" path="res://assets/sprites/falling_leaves/falling_2.png" id="9_y8n3f"]
+[ext_resource type="Texture2D" uid="uid://clm3hyg1yf85u" path="res://assets/sprites/falling_leaves/falling_11.png" id="10_035jy"]
+[ext_resource type="Texture2D" uid="uid://cw6aqliiip47n" path="res://assets/sprites/falling_leaves/falling_12.png" id="11_1u2mm"]
+[ext_resource type="Texture2D" uid="uid://cn87q4xur7k3d" path="res://assets/sprites/falling_leaves/falling_3.png" id="12_1bd83"]
 [ext_resource type="StyleBox" uid="uid://d30st0mo7ybvs" path="res://assets/sprites/button_style_box.tres" id="12_3f6u2"]
 [ext_resource type="AudioStream" uid="uid://mxexrpwppa61" path="res://assets/sounds/Background/background_music.MP3" id="12_5vegg"]
+[ext_resource type="Texture2D" uid="uid://damav2rq8fm1k" path="res://assets/sprites/falling_leaves/falling_4.png" id="13_gi00x"]
 [ext_resource type="Texture2D" uid="uid://hlqkfhwf6c55" path="res://assets/sprites/exit_icon.png" id="13_jd6dq"]
+[ext_resource type="Texture2D" uid="uid://bgy6mnc6guy1" path="res://assets/sprites/falling_leaves/falling_5.png" id="14_nu0wl"]
 [ext_resource type="PackedScene" uid="uid://cyyc0l22m8mmi" path="res://scenes/ui/menu/VolumeSlider.tscn" id="14_qc1d7"]
+[ext_resource type="Texture2D" uid="uid://h87my163msve" path="res://assets/sprites/falling_leaves/falling_6.png" id="15_ovkom"]
+[ext_resource type="Texture2D" uid="uid://pva5hg4sm8kf" path="res://assets/sprites/falling_leaves/falling_7.png" id="16_c3mjb"]
+[ext_resource type="Texture2D" uid="uid://1ludayfjn45y" path="res://assets/sprites/falling_leaves/falling_8.png" id="17_wn03m"]
+[ext_resource type="Texture2D" uid="uid://d3h8vee12g0at" path="res://assets/sprites/falling_leaves/falling_9.png" id="18_127vy"]
+[ext_resource type="Texture2D" uid="uid://bb7l508e3552j" path="res://assets/sprites/falling_leaves/falling_10.png" id="19_oi2c4"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_h81n7"]
 frames = 3
@@ -23,6 +35,34 @@ frame_1/texture = ExtResource("6_v6gaq")
 frame_1/duration = 1.0
 frame_2/texture = ExtResource("7_7dhfw")
 frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_rfxjv"]
+frames = 12
+speed_scale = 0.3
+frame_0/texture = ExtResource("8_5mgtb")
+frame_0/duration = 0.08
+frame_1/texture = ExtResource("9_y8n3f")
+frame_1/duration = 0.08
+frame_2/texture = ExtResource("12_1bd83")
+frame_2/duration = 0.08
+frame_3/texture = ExtResource("13_gi00x")
+frame_3/duration = 0.08
+frame_4/texture = ExtResource("14_nu0wl")
+frame_4/duration = 0.08
+frame_5/texture = ExtResource("15_ovkom")
+frame_5/duration = 0.08
+frame_6/texture = ExtResource("16_c3mjb")
+frame_6/duration = 0.08
+frame_7/texture = ExtResource("17_wn03m")
+frame_7/duration = 0.08
+frame_8/texture = ExtResource("18_127vy")
+frame_8/duration = 0.08
+frame_9/texture = ExtResource("19_oi2c4")
+frame_9/duration = 0.08
+frame_10/texture = ExtResource("10_035jy")
+frame_10/duration = 0.08
+frame_11/texture = ExtResource("11_1u2mm")
+frame_11/duration = 0.08
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i8uho"]
 texture = ExtResource("4_fsa78")
@@ -99,6 +139,16 @@ layout_mode = 0
 offset_right = 1.0
 offset_bottom = 1.0
 texture = SubResource("AnimatedTexture_h81n7")
+
+[node name="FallingLeaves" type="TextureRect" parent="GroundBackground/SwordsMiddleGround/TreesForeGround/AnimatedLeaves"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_rfxjv")
 
 [node name="MainMenuElements" type="MarginContainer" parent="GroundBackground"]
 layout_mode = 1
