@@ -4,6 +4,7 @@ extends CanvasLayer
 static var game_start_time
 static var current_score: int
 
+@onready var fart_unlocked_sound: AudioStreamPlayer = $FartUnlockedSound
 @export var countdown_label: RichTextLabel
 @export var score_label: RichTextLabel
 @export var progress_bar: ProgressBar
@@ -29,6 +30,7 @@ func deactivate_fart():
 
 func activate_fart():
 	fart_animated_sprite.play("activate")
+	fart_unlocked_sound.play()
 
 #func update_countdown(time_left: float) -> void:
 	#var current_time = time_left

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://76a05owd81yc"]
+[gd_scene load_steps=23 format=3 uid="uid://76a05owd81yc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_qv1m4"]
 [ext_resource type="FontFile" uid="uid://bw7i5ex7v82vb" path="res://assets/fonts/morning_breeze/MorningBreeze.otf" id="2_dsaal"]
 [ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/characters/main_char_head.png" id="2_pbnqi"]
 [ext_resource type="Shader" path="res://assets/shaders/fire_shader.gdshader" id="3_df6dr"]
 [ext_resource type="Texture2D" uid="uid://bfpk81umn50lh" path="res://assets/sprites/characters/fart_button.png" id="3_ef4or"]
+[ext_resource type="AudioStream" uid="uid://bu3d6ywfn4psj" path="res://assets/sounds/new/fart_unlocked.mp3" id="6_nn0fa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7coe"]
 bg_color = Color(0.730081, 0.104488, 0.136015, 1)
@@ -222,14 +223,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -270.0
-offset_top = -180.0
-offset_right = -230.0
-offset_bottom = -140.0
+offset_left = -412.0
+offset_top = -284.0
+offset_right = -372.0
+offset_bottom = -244.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/TextureRect2"]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_7uf5x")
 animation = &"activate"
 autoplay = "inactive"
@@ -243,3 +245,7 @@ offset_left = 160.0
 offset_top = 1532.0
 offset_right = 360.0
 offset_bottom = 1732.0
+
+[node name="FartUnlockedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nn0fa")
+volume_db = -10.0

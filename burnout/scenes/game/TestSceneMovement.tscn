@@ -168,7 +168,6 @@ position = Vector2(2867, 536)
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("3_qnb4v")]
 player = NodePath("../Player")
-spawn_frequency = 0.75
 enemy_spawn_points = [NodePath("../EnemySpawnPoints/EnemySpawn10"), NodePath("../EnemySpawnPoints/EnemySpawn9"), NodePath("../EnemySpawnPoints/EnemySpawn8"), NodePath("../EnemySpawnPoints/EnemySpawn7"), NodePath("../EnemySpawnPoints/EnemySpawn6"), NodePath("../EnemySpawnPoints/EnemySpawn5"), NodePath("../EnemySpawnPoints/EnemySpawn4"), NodePath("../EnemySpawnPoints/EnemySpawn3"), NodePath("../EnemySpawnPoints/EnemySpawn2"), NodePath("../EnemySpawnPoints/EnemySpawn1")]
 
 [node name="ItemManager" parent="." node_paths=PackedStringArray("item_spawn_points") instance=ExtResource("4_3afqg")]

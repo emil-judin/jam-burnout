@@ -60,6 +60,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="BlueFlame" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_2hgla")
 time_value = 20.0
 
@@ -85,6 +86,7 @@ shape = SubResource("RectangleShape2D_pw5as")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-1, 1)
 color = Color(0, 1, 1, 1)
+energy = 1.25
 texture = SubResource("GradientTexture2D_wsygh")
 texture_scale = 18.0
 
