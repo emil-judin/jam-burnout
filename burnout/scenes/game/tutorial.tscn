@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b4p735tkh3c5r"]
+[gd_scene load_steps=38 format=3 uid="uid://b4p735tkh3c5r"]
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_34oxo"]
 [ext_resource type="Texture2D" uid="uid://oa18aeplv7fp" path="res://assets/sprites/ground_main_menu.png" id="2_2a2ah"]
@@ -8,99 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://lrdfdy6temgy" path="res://assets/sprites/button.png" id="4_7sq8s"]
 [ext_resource type="Texture2D" uid="uid://cf3n4ei6gy5nl" path="res://assets/sprites/custom_cursor.png" id="5_8766e"]
 [ext_resource type="Texture2D" uid="uid://dq8lhm0v1o0tw" path="res://assets/sprites/environments/fire_glow.png" id="5_ixcw5"]
-[ext_resource type="Texture2D" uid="uid://buihmoeurumtx" path="res://assets/sprites/characters/player_stomp.png" id="6_ynxrw"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ng0nb"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(0, 0, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ylw4"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(1419, 0, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_72tv0"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(2838, 0, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckkek"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(4257, 0, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_axnuq"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(0, 1131, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vuxlf"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(1419, 1131, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_23w50"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(2838, 1131, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0nyco"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(4257, 1131, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sctxo"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(0, 2262, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvm1s"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(1419, 2262, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3d0m"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(2838, 2262, 1419, 1131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yr0id"]
-atlas = ExtResource("6_ynxrw")
-region = Rect2(4257, 2262, 1419, 1131)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a20s2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ng0nb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ylw4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_72tv0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ckkek")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_axnuq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vuxlf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_23w50")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0nyco")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sctxo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvm1s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s3d0m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yr0id")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
+[ext_resource type="Texture2D" uid="uid://bfpk81umn50lh" path="res://assets/sprites/characters/fart_button.png" id="6_geva1"]
+[ext_resource type="Texture2D" uid="uid://5afp8tnlrxi0" path="res://assets/sprites/time_bar.png" id="6_tttev"]
+[ext_resource type="Texture2D" uid="uid://dj5lrp47k1mca" path="res://assets/sprites/environments/blue_flame.png" id="8_3bqhd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxjw7"]
 atlas = ExtResource("5_ixcw5")
@@ -152,6 +62,120 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_53qwq"]
+atlas = ExtResource("8_3bqhd")
+region = Rect2(0, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm1ao"]
+atlas = ExtResource("8_3bqhd")
+region = Rect2(281, 0, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jletg"]
+atlas = ExtResource("8_3bqhd")
+region = Rect2(0, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18dy6"]
+atlas = ExtResource("8_3bqhd")
+region = Rect2(281, 418, 281, 418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6kmh"]
+atlas = ExtResource("8_3bqhd")
+region = Rect2(562, 0, 281, 418)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n43ei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53qwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm1ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jletg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18dy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6kmh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htl1p"]
+atlas = ExtResource("6_geva1")
+region = Rect2(0, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cam2"]
+atlas = ExtResource("6_geva1")
+region = Rect2(444, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjdq0"]
+atlas = ExtResource("6_geva1")
+region = Rect2(888, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_typbd"]
+atlas = ExtResource("6_geva1")
+region = Rect2(0, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujp55"]
+atlas = ExtResource("6_geva1")
+region = Rect2(444, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te3gv"]
+atlas = ExtResource("6_geva1")
+region = Rect2(888, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iopem"]
+atlas = ExtResource("6_geva1")
+region = Rect2(0, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30068"]
+atlas = ExtResource("6_geva1")
+region = Rect2(444, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22qyg"]
+atlas = ExtResource("6_geva1")
+region = Rect2(888, 698, 444, 349)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olcih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htl1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cam2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjdq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_typbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujp55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te3gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iopem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30068")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22qyg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edw3h"]
 texture = ExtResource("3_7v31h")
 texture_margin_left = 25.0
@@ -199,7 +223,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 150
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
@@ -214,17 +238,19 @@ theme_override_font_sizes/font_size = 80
 text = "You are the last flame fighting against the dark 
 Not only do you have to fight them, but time itself.
 Collect fire to stay alive and fight the dark using your abilities. 
-Stay Alive as long as possible."
+Stay alive as long as possible."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_top = 150
 theme_override_constants/margin_bottom = 150
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 50
 
 [node name="WASD" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
@@ -268,7 +294,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("2_26c3i")
 theme_override_font_sizes/font_size = 80
-text = "Aim with your mouse
+text = "Aim your fire with your mouse
 "
 horizontal_alignment = 1
 
@@ -284,68 +310,135 @@ texture = ExtResource("5_8766e")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="FireFart" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="TimeBar" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart"]
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TimeBar"]
 layout_mode = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("2_26c3i")
 theme_override_font_sizes/font_size = 80
-text = "Press E to use Fire Fart
-"
+text = "Dont let your time run out"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart"]
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TimeBar"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TimeBar/CenterContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/FireFart/CenterContainer/TextureRect"]
-position = Vector2(162, 521)
-sprite_frames = SubResource("SpriteFrames_a20s2")
-autoplay = "default"
-frame_progress = 0.477738
+[node name="TimeBar" type="Sprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TimeBar/CenterContainer/TextureRect"]
+position = Vector2(150, 220)
+texture = ExtResource("6_tttev")
 
-[node name="Flames" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 50
+
+[node name="Flames" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames"]
 layout_mode = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("2_26c3i")
 theme_override_font_sizes/font_size = 80
-text = "Collect Flames to Survive"
+text = "Collect flames to increase your time"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames/CenterContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Flames"]
-position = Vector2(362, 173)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames"]
+position = Vector2(508, 182)
 sprite_frames = SubResource("SpriteFrames_vpt3a")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Flames2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames2"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = " Soul Flames give more time"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames2/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/Flames2/CenterContainer/TextureRect"]
+position = Vector2(148, -9)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n43ei")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="FireFart" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/FireFart"]
+layout_mode = 2
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_26c3i")
+theme_override_font_sizes/font_size = 80
+text = "Press E / R-Click to use Fire Fart
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/FireFart"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/FireFart/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/FireFart/CenterContainer/TextureRect"]
+position = Vector2(137, 123)
+sprite_frames = SubResource("SpriteFrames_olcih")
+autoplay = "default"
+frame = 8
+frame_progress = 1.0
 
 [node name="StartButton" type="Button" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
