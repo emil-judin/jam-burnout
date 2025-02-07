@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cw6aqliiip47n" path="res://assets/sprites/falling_leaves/falling_12.png" id="11_1u2mm"]
 [ext_resource type="Texture2D" uid="uid://cn87q4xur7k3d" path="res://assets/sprites/falling_leaves/falling_3.png" id="12_1bd83"]
 [ext_resource type="StyleBox" uid="uid://d30st0mo7ybvs" path="res://assets/sprites/button_style_box.tres" id="12_3f6u2"]
-[ext_resource type="AudioStream" uid="uid://mxexrpwppa61" path="res://assets/sounds/Background/background_music.MP3" id="12_5vegg"]
 [ext_resource type="Texture2D" uid="uid://damav2rq8fm1k" path="res://assets/sprites/falling_leaves/falling_4.png" id="13_gi00x"]
 [ext_resource type="Texture2D" uid="uid://hlqkfhwf6c55" path="res://assets/sprites/exit_icon.png" id="13_jd6dq"]
 [ext_resource type="Texture2D" uid="uid://bgy6mnc6guy1" path="res://assets/sprites/falling_leaves/falling_5.png" id="14_nu0wl"]
@@ -27,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://1ludayfjn45y" path="res://assets/sprites/falling_leaves/falling_8.png" id="17_wn03m"]
 [ext_resource type="Texture2D" uid="uid://d3h8vee12g0at" path="res://assets/sprites/falling_leaves/falling_9.png" id="18_127vy"]
 [ext_resource type="Texture2D" uid="uid://bb7l508e3552j" path="res://assets/sprites/falling_leaves/falling_10.png" id="19_oi2c4"]
+[ext_resource type="AudioStream" uid="uid://dslydx4ntnoun" path="res://assets/sounds/new/intro_combination.mp3" id="27_8vwnk"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_h81n7"]
 frames = 3
@@ -382,7 +382,7 @@ texture = SubResource("GradientTexture2D_w4qrd")
 texture_scale = 18.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_5vegg")
+stream = ExtResource("27_8vwnk")
 volume_db = -10.0
 autoplay = true
 bus = &"music"

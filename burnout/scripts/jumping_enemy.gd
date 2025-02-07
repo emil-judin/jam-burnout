@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name JumpingEnemy
 
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_manager: HealthManager = $HealthManager
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -24,6 +25,10 @@ func _ready():
 	animation_player.play("spawn")
 
 func _physics_process(delta):
+	#if target != null:
+	navigation_agent_2d.target_position = target.global_position
+	var next_path_position = navigation_agent_2d.get_next_path_position()
+	
 	if is_chasing && target != null:
 		if is_waiting:
 			animated_sprite.play("idle")
@@ -37,11 +42,12 @@ func _physics_process(delta):
 				animated_sprite.play("jump_start")
 				$SpiderJump.play()
 				jump_start = global_position
+				#var jump_to_target_position = target.position - jump_start
 				var jump_to_target_position = target.position - jump_start
 				if jump_to_target_position.length() <= jump_range:
 					jump_target = target.global_position
 				else:
-					jump_target = jump_start + jump_to_target_position.normalized() * jump_range
+					jump_target = jump_start + (next_path_position - jump_start).normalized() * jump_range
 			else:
 				waiting_timer += delta
 				return
@@ -58,11 +64,12 @@ func _physics_process(delta):
 			# set new jump position
 			animated_sprite.play("jump_start")
 			jump_start = global_position
+			#var jump_to_target_position = target.position - jump_start
 			var jump_to_target_position = target.position - jump_start
 			if jump_to_target_position.length() <= jump_range:
 				jump_target = target.global_position
 			else:
-				jump_target = jump_start + jump_to_target_position.normalized() * jump_range
+				jump_target = jump_start + (next_path_position - jump_start).normalized() * jump_range
 		else:
 			waiting_timer += delta
 			collision_shape.disabled = false

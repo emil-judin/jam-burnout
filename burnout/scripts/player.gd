@@ -52,7 +52,8 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("stomp") && current_stomp_instance == null && fart_useable :
+	if event.is_action_pressed("stomp") && current_stomp_instance == null && fart_useable && !is_dead:
+		ui.deactivate_fart()
 		current_stomp_instance = null
 		fart_useable = false
 		fart_timer.start(fart_cooldown)
@@ -79,11 +80,11 @@ func finish_stomp():
 func _on_fart_timer_timeout():
 	fart_timer.stop()
 	fart_useable = true
+	ui.activate_fart()
 
 func _on_invicibility_timer_timeout():
 	invincibility_timer.stop()
 	invincible = false
-
 
 func _process(delta):
 	if animated_sprite.animation == "stomp_complete" and animated_sprite.frame == 7 && !activated_stomp_hitbox:
@@ -190,7 +191,7 @@ func _on_area_entered(area: Area2D):
 			received_damage.emit(parent.contact_damage)
 		if parent is EnvironmentDamage:
 			is_in_puddle = true
-			damage_feedback()
+			#damage_feedback()
 		if parent is EnemyBullet:
 			# Deal bullet damage
 			var enemy_bullet = parent as EnemyBullet

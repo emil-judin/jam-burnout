@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btclmhvd2fo8k"]
+[gd_scene load_steps=26 format=3 uid="uid://btclmhvd2fo8k"]
 
 [ext_resource type="Script" path="res://scripts/jumping_enemy.gd" id="1_v51be"]
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="2_76otw"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://yduihphlo2ct" path="res://assets/sprites/characters/spiderling_idle.png" id="3_nky8l"]
 [ext_resource type="PackedScene" uid="uid://88peymj2jp4v" path="res://assets/sounds/Enemy/EnemyDamageSound.tscn" id="6_jtab7"]
 [ext_resource type="PackedScene" uid="uid://b0ptwijg54v27" path="res://assets/sounds/Enemy/SpiderJump.tscn" id="7_bwuog"]
+[ext_resource type="AudioStream" uid="uid://d64u0gwopm24" path="res://assets/sounds/new/enemy_gets_hit.mp3" id="7_yr671"]
+[ext_resource type="AudioStream" uid="uid://bfae4guso0nqy" path="res://assets/sounds/new/spider_jump.mp3" id="8_mmx4r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwl41"]
 atlas = ExtResource("2_n8sq2")
@@ -143,7 +145,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.02, 0.02, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.410438, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2m6pk"]
@@ -203,9 +205,12 @@ shape = SubResource("RectangleShape2D_jo2u5")
 [node name="HealthManager" parent="." instance=ExtResource("3_2mxud")]
 
 [node name="EnemyHit" parent="." instance=ExtResource("6_jtab7")]
+stream = ExtResource("7_yr671")
 
 [node name="SpiderJump" parent="." instance=ExtResource("7_bwuog")]
-volume_db = -18.0
+stream = ExtResource("8_mmx4r")
+volume_db = -7.5
+max_distance = 1500.0
 bus = &"sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

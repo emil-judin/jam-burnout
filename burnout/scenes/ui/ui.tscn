@@ -1,12 +1,117 @@
-[gd_scene load_steps=9 format=3 uid="uid://76a05owd81yc"]
+[gd_scene load_steps=22 format=3 uid="uid://76a05owd81yc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_qv1m4"]
 [ext_resource type="FontFile" uid="uid://bw7i5ex7v82vb" path="res://assets/fonts/morning_breeze/MorningBreeze.otf" id="2_dsaal"]
 [ext_resource type="Texture2D" uid="uid://biqyy2tttry4d" path="res://assets/sprites/characters/main_char_head.png" id="2_pbnqi"]
 [ext_resource type="Shader" path="res://assets/shaders/fire_shader.gdshader" id="3_df6dr"]
+[ext_resource type="Texture2D" uid="uid://bfpk81umn50lh" path="res://assets/sprites/characters/fart_button.png" id="3_ef4or"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7coe"]
 bg_color = Color(0.730081, 0.104488, 0.136015, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctm5v"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(0, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj6y6"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(444, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7qh0"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(888, 0, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy7hp"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(0, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0nxh"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(444, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkmv0"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(888, 349, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n31h1"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(0, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u843c"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(444, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdhl4"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(888, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ro0d"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(888, 698, 444, 349)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bdnx"]
+atlas = ExtResource("3_ef4or")
+region = Rect2(0, 0, 444, 349)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uf5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctm5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj6y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7qh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy7hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0nxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkmv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n31h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n31h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n31h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n31h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u843c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdhl4")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ro0d")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bdnx")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ca6xu"]
 
@@ -21,12 +126,13 @@ shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
 shader_parameter/spread = 0.5
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_10c38")
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("countdown_label", "score_label", "progress_bar", "flame_texture")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("countdown_label", "score_label", "progress_bar", "flame_texture", "fart_animated_sprite")]
 script = ExtResource("1_qv1m4")
 countdown_label = NodePath("Control/MainContainer/TopBox/MarginContainer2/Countdown")
 score_label = NodePath("Control/MainContainer/TopBox/MarginContainer2/ScoreLabel")
 progress_bar = NodePath("Control/ProgressBarContainer/MarginContainer/ProgressBar")
 flame_texture = NodePath("Control/TextureRect")
+fart_animated_sprite = NodePath("Control/TextureRect2/AnimatedSprite2D")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -108,6 +214,27 @@ offset_top = 84.0
 offset_right = 322.0
 offset_bottom = 314.0
 texture = ExtResource("2_pbnqi")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -180.0
+offset_right = -230.0
+offset_bottom = -140.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/TextureRect2"]
+sprite_frames = SubResource("SpriteFrames_7uf5x")
+animation = &"activate"
+autoplay = "inactive"
+frame = 11
+frame_progress = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

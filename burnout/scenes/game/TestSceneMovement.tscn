@@ -151,8 +151,8 @@ libraries = {
 [node name="Player" parent="." node_paths=PackedStringArray("ui", "camera") instance=ExtResource("2_mknsx")]
 position = Vector2(5, -60)
 ui = NodePath("../UI")
-fart_cooldown = 5.0
-fart_invincibility = 0.5
+movement_speed = 800.0
+fart_cooldown = 3.0
 camera = NodePath("../Camera2D")
 
 [node name="Ground" type="Sprite2D" parent="."]
@@ -168,6 +168,7 @@ position = Vector2(2867, 536)
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("player", "enemy_spawn_points") instance=ExtResource("3_qnb4v")]
 player = NodePath("../Player")
+spawn_frequency = 0.75
 enemy_spawn_points = [NodePath("../EnemySpawnPoints/EnemySpawn10"), NodePath("../EnemySpawnPoints/EnemySpawn9"), NodePath("../EnemySpawnPoints/EnemySpawn8"), NodePath("../EnemySpawnPoints/EnemySpawn7"), NodePath("../EnemySpawnPoints/EnemySpawn6"), NodePath("../EnemySpawnPoints/EnemySpawn5"), NodePath("../EnemySpawnPoints/EnemySpawn4"), NodePath("../EnemySpawnPoints/EnemySpawn3"), NodePath("../EnemySpawnPoints/EnemySpawn2"), NodePath("../EnemySpawnPoints/EnemySpawn1")]
 
 [node name="ItemManager" parent="." node_paths=PackedStringArray("item_spawn_points") instance=ExtResource("4_3afqg")]

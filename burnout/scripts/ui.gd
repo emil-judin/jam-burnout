@@ -9,6 +9,10 @@ static var current_score: int
 @export var progress_bar: ProgressBar
 #@export var flame_texture: Sprite2D
 @export var flame_texture: TextureRect
+@export var fart_animated_sprite: AnimatedSprite2D
+
+func _ready():
+	activate_fart()
 
 static func reset_game_start_time():
 	UI.game_start_time = Time.get_ticks_msec()
@@ -19,6 +23,12 @@ func initialize_health_ui(start_health_time: float, max_health_time: float):
 	#update_countdown(start_health_time)
 	update_progress_bar(start_health_time)
 	update_time_score(0)
+
+func deactivate_fart():
+	fart_animated_sprite.play("inactive")
+
+func activate_fart():
+	fart_animated_sprite.play("activate")
 
 #func update_countdown(time_left: float) -> void:
 	#var current_time = time_left

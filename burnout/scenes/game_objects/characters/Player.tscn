@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cb2btogqfqo0m"]
+[gd_scene load_steps=75 format=3 uid="uid://cb2btogqfqo0m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_v2l1p"]
 [ext_resource type="PackedScene" uid="uid://2b2p3j33lcgm" path="res://scenes/game_objects/Stomp.tscn" id="2_5fqtu"]
@@ -13,10 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cby5af721y2o8" path="res://assets/sprites/characters/stomp_complete.png" id="9_k568q"]
 [ext_resource type="PackedScene" uid="uid://bf86s6an87qy2" path="res://assets/sounds/Player/FeuerBallSound.tscn" id="9_rdf7u"]
 [ext_resource type="PackedScene" uid="uid://0h34wgotwiif" path="res://assets/sounds/Player/PlayerDamage.tscn" id="11_cw5dl"]
-[ext_resource type="AudioStream" uid="uid://cfjlwg4btxu6l" path="res://assets/sounds/Player/Ability 1.1.mp3" id="13_wyrrw"]
-[ext_resource type="AudioStream" uid="uid://oyfmd0rjf7gt" path="res://assets/sounds/Player/Feuer ausgelöscht 2.mp3" id="14_wu2yd"]
+[ext_resource type="AudioStream" uid="uid://dd7fbxv8600yl" path="res://assets/sounds/new/player_gets_hit3.mp3" id="13_ip1i7"]
+[ext_resource type="AudioStream" uid="uid://bu7ftvcq66ogk" path="res://assets/sounds/new/fire_fart_2.mp3" id="13_kbba5"]
+[ext_resource type="AudioStream" uid="uid://ds8il4pk1mmmt" path="res://assets/sounds/new/hiss.MP3" id="14_iro2g"]
 [ext_resource type="AudioStream" uid="uid://ycxx7wyfp04t" path="res://assets/sounds/Player/flare.mp3" id="16_57wwg"]
-[ext_resource type="AudioStream" uid="uid://cg8nphifr0qbo" path="res://assets/sounds/Player/finalHit.mp3" id="17_40dbg"]
+[ext_resource type="AudioStream" uid="uid://bj17kysnnrktl" path="res://assets/sounds/new/maybe_death_player_2.mp3" id="18_5rmg5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbrwi"]
 atlas = ExtResource("2_7xfs0")
@@ -455,7 +456,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.02, 0.02, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.572549, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ofj0d"]
@@ -473,9 +474,8 @@ fart_cooldown = 0.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 100
 sprite_frames = SubResource("SpriteFrames_byg12")
-animation = &"back_walk"
+animation = &"stomp_complete"
 autoplay = "idle"
-frame_progress = 0.601694
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -511,15 +511,18 @@ libraries = {
 }
 
 [node name="PlayerDamage" parent="." instance=ExtResource("11_cw5dl")]
+stream = ExtResource("13_ip1i7")
+volume_db = -10.0
 bus = &"sfx"
 
 [node name="FireFartSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_wyrrw")
+stream = ExtResource("13_kbba5")
+volume_db = -10.0
 bus = &"sfx"
 
 [node name="ExtinguishSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_wu2yd")
-volume_db = 12.0
+stream = ExtResource("14_iro2g")
+volume_db = -7.5
 bus = &"sfx"
 
 [node name="FeuerBallSound" parent="." instance=ExtResource("9_rdf7u")]
@@ -531,7 +534,8 @@ volume_db = -4.0
 bus = &"sfx"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_40dbg")
+stream = ExtResource("18_5rmg5")
+volume_db = -7.5
 bus = &"sfx"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxo4v6la8agb7"]
+[gd_scene load_steps=20 format=3 uid="uid://bxo4v6la8agb7"]
 
 [ext_resource type="Script" path="res://scripts/flying_enemy.gd" id="1_y1bx2"]
 [ext_resource type="PackedScene" uid="uid://dv2gcdbr10esg" path="res://scenes/game_objects/EnemyBullet.tscn" id="2_rl05j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcwqd7x0k8lwj" path="res://icon.svg" id="3_d81is"]
 [ext_resource type="PackedScene" uid="uid://bl8sc7pg8bw74" path="res://scenes/game_objects/HealthManager.tscn" id="4_s0q11"]
 [ext_resource type="PackedScene" uid="uid://88peymj2jp4v" path="res://assets/sounds/Enemy/EnemyDamageSound.tscn" id="6_xaxsq"]
+[ext_resource type="AudioStream" uid="uid://d64u0gwopm24" path="res://assets/sounds/new/enemy_gets_hit.mp3" id="7_tlqgi"]
 [ext_resource type="PackedScene" uid="uid://d5fq1ifpmpy2" path="res://assets/sounds/Enemy/FlyEnemyShoot.tscn" id="7_xb47n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ox2lr"]
@@ -90,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.02, 0.02, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.411765, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ep2y5"]
@@ -150,6 +151,7 @@ shape = SubResource("RectangleShape2D_jo2u5")
 [node name="HealthManager" parent="." instance=ExtResource("4_s0q11")]
 
 [node name="EnemyHit" parent="." instance=ExtResource("6_xaxsq")]
+stream = ExtResource("7_tlqgi")
 
 [node name="FlyEnemyShoot" parent="." instance=ExtResource("7_xb47n")]
 volume_db = -8.0
