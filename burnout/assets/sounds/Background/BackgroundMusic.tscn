@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://gw7v75vju4vb"]
 
-[ext_resource type="AudioStream" uid="uid://dipjv1jg28b8p" path="res://assets/sounds/Background/Battle HintergrundMusik.mp3" id="1_qk3na"]
+[ext_resource type="AudioStream" uid="uid://cm7ldeuus177f" path="res://assets/sounds/new/Background Soundrack v1.1.mp3" id="1_srvst"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
-stream = ExtResource("1_qk3na")
+stream = ExtResource("1_srvst")
 volume_db = -10.0
 bus = &"music"
